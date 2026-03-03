@@ -1,0 +1,49 @@
+﻿<view class="page-shell">
+  <t-navbar title="🐳 巨鲸 Whales" fixed="{{true}}" placeholder="{{true}}" />
+
+  <view class="content-wrap">
+    <view class="top-info">
+      <text class="top-clock">{{clockText}}</text>
+      <t-button size="small" variant="outline" theme="primary" class="top-lang" bind:tap="onToggleLang">{{langBtnText}}</t-button>
+    </view>
+
+    <view class="section-title">24 小时大额交易 Top 10</view>
+
+    <block wx:for="{{trades}}" wx:key="id">
+      <view class="event-card">
+        <view class="event-body">
+          <view class="whale-row">
+            <view>
+              <view class="whale-amount">{{item.amount}}</view>
+              <view class="footer-left">交易时间 {{item.time}}</view>
+            </view>
+            <t-tag size="large" theme="{{item.side === 'BUY' ? 'success' : 'danger'}}" variant="light">{{item.side}}</t-tag>
+          </view>
+
+          <t-divider />
+          <view class="event-title">{{item.title}}</view>
+          <view class="footer-left">下注选项：{{item.option}}</view>
+          <view class="footer-left">交易哈希：{{item.hash}}</view>
+
+          <view class="event-footer">
+            <text class="footer-left">链上地址：{{item.address}}</text>
+            <t-button size="small" variant="text" theme="primary">查看区块</t-button>
+            <t-button size="small" variant="text" theme="danger" bind:tap="onFavoriteTap">
+              收藏
+            </t-button>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <view class="tab-bar-wrap">
+    <t-tab-bar value="{{tabValue}}" bind:change="onTabChange" fixed="{{true}}" placeholder="{{true}}" bordered="{{true}}">
+      <t-tab-bar-item value="trending">热点</t-tab-bar-item>
+      <t-tab-bar-item value="breaking">突发</t-tab-bar-item>
+      <t-tab-bar-item value="latest">最新</t-tab-bar-item>
+      <t-tab-bar-item value="whales">巨鲸</t-tab-bar-item>
+      <t-tab-bar-item value="profile">我的</t-tab-bar-item>
+    </t-tab-bar>
+  </view>
+</view>

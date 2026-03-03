@@ -1,0 +1,47 @@
+﻿<view class="page-shell">
+  <t-navbar title="👤 我的 Profile" fixed="{{true}}" placeholder="{{true}}" />
+
+  <view class="content-wrap">
+    <view class="top-info">
+      <text class="top-clock">{{clockText}}</text>
+      <t-button size="small" variant="outline" theme="primary" class="top-lang" bind:tap="onToggleLang">{{langBtnText}}</t-button>
+    </view>
+
+    <view class="event-card">
+      <view class="event-body" style="display:flex; align-items:center; gap:16rpx;">
+        <t-avatar size="large" image="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=256&q=80" />
+        <view>
+          <view class="event-title" style="font-size:30rpx;">Morph User</view>
+          <view class="footer-left">已登录 · openid: oYhW7x***</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="section-title">我的收藏</view>
+    <t-cell-group>
+      <block wx:for="{{favorites}}" wx:key="id">
+        <t-cell title="{{item.title}}" description="{{item.time}}" note="查看" arrow="{{true}}" bind:tap="onOpenDetail" data-title="{{item.title}}" />
+      </block>
+    </t-cell-group>
+
+    <view class="section-title">设置</view>
+    <view class="settings-wrap">
+      <t-cell title="语言切换" bordered="{{true}}">
+        <t-switch slot="note" value="{{langChecked}}" bind:change="onLangSwitch" />
+      </t-cell>
+      <t-cell title="关于我们" note="PolyAgent v1.0" arrow="{{true}}" />
+      <t-cell title="版本号" note="1.0.0" />
+      <t-cell title="退出登录" note="执行" arrow="{{true}}" bind:tap="onLogout" />
+    </view>
+  </view>
+
+  <view class="tab-bar-wrap">
+    <t-tab-bar value="{{tabValue}}" bind:change="onTabChange" fixed="{{true}}" placeholder="{{true}}" bordered="{{true}}">
+      <t-tab-bar-item value="trending">热点</t-tab-bar-item>
+      <t-tab-bar-item value="breaking">突发</t-tab-bar-item>
+      <t-tab-bar-item value="latest">最新</t-tab-bar-item>
+      <t-tab-bar-item value="whales">巨鲸</t-tab-bar-item>
+      <t-tab-bar-item value="profile">我的</t-tab-bar-item>
+    </t-tab-bar>
+  </view>
+</view>
