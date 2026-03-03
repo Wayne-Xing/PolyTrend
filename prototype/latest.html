@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PolyAgent - 最新</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./common.css" />
+</head>
+<body data-tab="latest">
+  <div class="phone-page app-shell relative">
+    <header class="top-bar">
+      <div class="top-row">
+        <div class="top-title">PolyAgent - 资讯速递</div>
+        <div class="clock" data-clock></div>
+        <button class="lang-switch" data-lang-toggle>简体中文 | EN</button>
+      </div>
+      <div class="page-title">🆕 最新 New</div>
+    </header>
+
+    <main class="scroll-area space-y-3">
+      <p class="section-title">24 小时新上线市场</p>
+
+      <article class="td-card">
+        <div class="event-cover" style="background:linear-gradient(135deg,#2563eb,#38bdf8)">Space Policy</div>
+        <div class="card-body">
+          <h3 class="card-title">NASA 新预算案会在本月国会投票中通过吗？</h3>
+          <div class="meta-row"><span>🏷️ 航天</span><span>📅 新建于 2 小时前</span><span>💧 $180K</span></div>
+          <div class="chart-row">
+            <div class="mini-chart">
+              <svg viewBox="0 0 120 40" width="100%" height="100%">
+                <polyline points="2,34 20,30 38,33 56,28 74,24 92,20 112,22" fill="none" stroke="#2e7d32" stroke-width="2.5" />
+              </svg>
+            </div>
+            <div class="delta-up">▲ +4.7%</div>
+          </div>
+          <div class="card-footer">
+            <span>📊 成交量：$120,000</span>
+            <span class="link-btn">查看原文 →</span>
+            <button class="fav-btn">♡</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="td-card">
+        <div class="event-cover" style="background:linear-gradient(135deg,#9333ea,#f472b6)">Cinema Awards</div>
+        <div class="card-body">
+          <h3 class="card-title">今年奥斯卡最佳影片是否由流媒体平台作品获得？</h3>
+          <div class="meta-row"><span>🏷️ 娱乐</span><span>📅 新建于 6 小时前</span><span>💧 $90K</span></div>
+          <div class="chart-row">
+            <div class="mini-chart">
+              <svg viewBox="0 0 120 40" width="100%" height="100%">
+                <polyline points="2,12 20,14 38,17 56,22 74,28 92,26 112,31" fill="none" stroke="#c62828" stroke-width="2.5" />
+              </svg>
+            </div>
+            <div class="delta-down">▼ -5.2%</div>
+          </div>
+          <div class="card-footer">
+            <span>📊 成交量：$74,500</span>
+            <span class="link-btn">查看原文 →</span>
+            <button class="fav-btn active">♥</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="td-card">
+        <div class="event-cover" style="background:linear-gradient(135deg,#115e59,#0d9488)">Climate Deal</div>
+        <div class="card-body">
+          <h3 class="card-title">COP 峰会最终协议是否包含新的碳关税框架？</h3>
+          <div class="meta-row"><span>🏷️ 气候</span><span>📅 新建于 11 小时前</span><span>💧 $66K</span></div>
+          <div class="chart-row">
+            <div class="mini-chart">
+              <svg viewBox="0 0 120 40" width="100%" height="100%">
+                <polyline points="2,27 20,24 38,26 56,21 74,19 92,17 112,15" fill="none" stroke="#2e7d32" stroke-width="2.5" />
+              </svg>
+            </div>
+            <div class="delta-up">▲ +3.1%</div>
+          </div>
+          <div class="card-footer">
+            <span>📊 成交量：$48,200</span>
+            <span class="link-btn">查看原文 →</span>
+            <button class="fav-btn">♡</button>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <nav class="bottom-nav">
+      <button class="tab-item" data-tab-key="trending"><span>🔥</span><span>热点</span></button>
+      <button class="tab-item" data-tab-key="breaking"><span>⚡</span><span>突发</span></button>
+      <button class="tab-item" data-tab-key="latest"><span>🆕</span><span>最新</span></button>
+      <button class="tab-item" data-tab-key="whales"><span>🐳</span><span>巨鲸</span></button>
+      <button class="tab-item" data-tab-key="profile"><span>👤</span><span>我的</span></button>
+    </nav>
+  </div>
+
+  <script src="./common.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PolyAgent - 热点</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./common.css" />
+</head>
+<body data-tab="trending">
+  <div class="phone-page app-shell relative">
+    <header class="top-bar">
+      <div class="top-row">
+        <div class="top-title">PolyAgent - 资讯速递</div>
+        <div class="clock" data-clock></div>
+        <button class="lang-switch" data-lang-toggle>简体中文 | EN</button>
+      </div>
+      <div class="page-title">🔥 热点 Trending</div>
+    </header>
+
+    <main class="scroll-area space-y-3">
+      <p class="section-title">24 小时热度 Top 10（原型示例）</p>
+
+      <article class="td-card">
+        <div class="event-cover">US Election 2028</div>
+        <div class="card-body">
+          <h3 class="card-title">美国 2028 总统大选中，民主党候选人是否将赢得普选？</h3>
+          <div class="meta-row">
+            <span>🏷️ 选举</span><span>📅 截止 2028-11-06</span><span>💧 $2.1M</span>
+          </div>
+          <div class="progress-wrap">
+            <div class="progress-bar"><div class="progress-yes" style="width:72%"></div></div>
+            <div class="progress-label"><span style="color:#2e7d32">Yes 72%</span><span style="color:#c62828">No 28%</span></div>
+          </div>
+          <div class="card-footer">
+            <span>📊 成交量：$1,240,000</span>
+            <span class="link-btn">查看原文 →</span>
+            <button class="fav-btn">♡</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="td-card">
+        <div class="event-cover" style="background:linear-gradient(135deg,#0c5b5b,#38b2ac)">BTC ETF</div>
+        <div class="card-body">
+          <h3 class="card-title">2026 年底前，美国是否会批准新的比特币现货 ETF 扩容方案？</h3>
+          <div class="meta-row">
+            <span>🏷️ Crypto</span><span>📅 截止 2026-12-31</span><span>💧 $1.4M</span>
+          </div>
+          <div class="progress-wrap">
+            <div class="progress-bar"><div class="progress-yes" style="width:61%"></div></div>
+            <div class="progress-label"><span style="color:#2e7d32">Yes 61%</span><span style="color:#c62828">No 39%</span></div>
+          </div>
+          <div class="card-footer">
+            <span>📊 成交量：$980,000</span>
+            <span class="link-btn">查看原文 →</span>
+            <button class="fav-btn active">♥</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="td-card">
+        <div class="event-cover" style="background:linear-gradient(135deg,#8b5cf6,#4f46e5)">Fed Rate</div>
+        <div class="card-body">
+          <h3 class="card-title">美联储将在下次议息会议中降息 25bp 及以上吗？</h3>
+          <div class="meta-row">
+            <span>🏷️ 宏观</span><span>📅 截止 2026-06-18</span><span>💧 $950K</span>
+          </div>
+          <div class="progress-wrap">
+            <div class="progress-bar"><div class="progress-yes" style="width:48%"></div></div>
+            <div class="progress-label"><span style="color:#2e7d32">Yes 48%</span><span style="color:#c62828">No 52%</span></div>
+          </div>
+          <div class="card-footer">
+            <span>📊 成交量：$640,000</span>
+            <span class="link-btn">查看原文 →</span>
+            <button class="fav-btn">♡</button>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <nav class="bottom-nav">
+      <button class="tab-item" data-tab-key="trending"><span>🔥</span><span>热点</span></button>
+      <button class="tab-item" data-tab-key="breaking"><span>⚡</span><span>突发</span></button>
+      <button class="tab-item" data-tab-key="latest"><span>🆕</span><span>最新</span></button>
+      <button class="tab-item" data-tab-key="whales"><span>🐳</span><span>巨鲸</span></button>
+      <button class="tab-item" data-tab-key="profile"><span>👤</span><span>我的</span></button>
+    </nav>
+  </div>
+
+  <script src="./common.js"></script>
+</body>
+</html>

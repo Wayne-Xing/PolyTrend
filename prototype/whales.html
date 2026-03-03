@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PolyAgent - 巨鲸</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./common.css" />
+</head>
+<body data-tab="whales">
+  <div class="phone-page app-shell relative">
+    <header class="top-bar">
+      <div class="top-row">
+        <div class="top-title">PolyAgent - 资讯速递</div>
+        <div class="clock" data-clock></div>
+        <button class="lang-switch" data-lang-toggle>简体中文 | EN</button>
+      </div>
+      <div class="page-title">🐳 巨鲸 Whales</div>
+    </header>
+
+    <main class="scroll-area space-y-3">
+      <p class="section-title">24 小时大额交易 Top 10</p>
+
+      <article class="td-card p-3 space-y-3">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <div class="whale-amount">$250,000</div>
+            <p class="text-xs text-slate-500 mt-1">交易时间 2026-03-03 13:42</p>
+          </div>
+          <span class="side-tag side-buy">BUY</span>
+        </div>
+        <div class="text-sm font-semibold">美国大选：候选人 A 获胜概率</div>
+        <div class="text-xs text-slate-600">下注选项：Yes @ 0.68</div>
+        <div class="text-xs text-slate-600">交易哈希：0x8F23...A901</div>
+        <div class="card-footer" style="margin-top:0;padding-top:8px;">
+          <span>链上地址：0x12...9f</span>
+          <span class="link-btn">查看区块 →</span>
+          <button class="fav-btn">♡</button>
+        </div>
+      </article>
+
+      <article class="td-card p-3 space-y-3">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <div class="whale-amount">$198,000</div>
+            <p class="text-xs text-slate-500 mt-1">交易时间 2026-03-03 09:17</p>
+          </div>
+          <span class="side-tag side-sell">SELL</span>
+        </div>
+        <div class="text-sm font-semibold">原油价格本周突破 $95</div>
+        <div class="text-xs text-slate-600">卖出选项：No @ 0.57</div>
+        <div class="text-xs text-slate-600">交易哈希：0x4D9B...E8C2</div>
+        <div class="card-footer" style="margin-top:0;padding-top:8px;">
+          <span>链上地址：0x7d...c1</span>
+          <span class="link-btn">查看区块 →</span>
+          <button class="fav-btn active">♥</button>
+        </div>
+      </article>
+
+      <article class="td-card p-3 space-y-3">
+        <div class="flex items-start justify-between gap-3">
+          <div>
+            <div class="whale-amount">$172,500</div>
+            <p class="text-xs text-slate-500 mt-1">交易时间 2026-03-03 04:05</p>
+          </div>
+          <span class="side-tag side-buy">BUY</span>
+        </div>
+        <div class="text-sm font-semibold">美联储 6 月会议降息概率</div>
+        <div class="text-xs text-slate-600">下注选项：Yes @ 0.51</div>
+        <div class="text-xs text-slate-600">交易哈希：0xAA10...11B7</div>
+        <div class="card-footer" style="margin-top:0;padding-top:8px;">
+          <span>链上地址：0x3a...e9</span>
+          <span class="link-btn">查看区块 →</span>
+          <button class="fav-btn">♡</button>
+        </div>
+      </article>
+    </main>
+
+    <nav class="bottom-nav">
+      <button class="tab-item" data-tab-key="trending"><span>🔥</span><span>热点</span></button>
+      <button class="tab-item" data-tab-key="breaking"><span>⚡</span><span>突发</span></button>
+      <button class="tab-item" data-tab-key="latest"><span>🆕</span><span>最新</span></button>
+      <button class="tab-item" data-tab-key="whales"><span>🐳</span><span>巨鲸</span></button>
+      <button class="tab-item" data-tab-key="profile"><span>👤</span><span>我的</span></button>
+    </nav>
+  </div>
+
+  <script src="./common.js"></script>
+</body>
+</html>

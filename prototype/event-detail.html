@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PolyAgent - 详情</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./common.css" />
+</head>
+<body>
+  <div class="phone-page app-shell relative">
+    <header class="top-bar">
+      <div class="top-row">
+        <div class="top-title">PolyAgent - 资讯速递</div>
+        <div class="clock" data-clock></div>
+        <button class="lang-switch" data-lang-toggle>简体中文 | EN</button>
+      </div>
+      <div class="page-title">📄 事件详情 WebView</div>
+    </header>
+
+    <main class="scroll-area">
+      <section class="td-card p-3">
+        <h3 class="text-sm font-semibold">Will candidate A win the election?</h3>
+        <p class="text-xs text-slate-500 mt-1">来源：polymarket.com / event/123456</p>
+      </section>
+
+      <section class="td-card mt-3 overflow-hidden">
+        <div class="h-[560px] bg-slate-100 border border-slate-200 rounded-xl m-3 flex items-center justify-center text-center px-4">
+          <div>
+            <p class="text-sm text-slate-700 font-semibold">WebView 页面占位</p>
+            <p class="text-xs text-slate-500 mt-2">点击卡片后在小程序中打开 PolyMarket 原文详情</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="./common.js"></script>
+</body>
+</html>

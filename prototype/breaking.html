@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PolyAgent - 突发</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./common.css" />
+</head>
+<body data-tab="breaking">
+  <div class="phone-page app-shell relative">
+    <header class="top-bar">
+      <div class="top-row">
+        <div class="top-title">PolyAgent - 资讯速递</div>
+        <div class="clock" data-clock></div>
+        <button class="lang-switch" data-lang-toggle>简体中文 | EN</button>
+      </div>
+      <div class="page-title">⚡ 突发 Breaking</div>
+    </header>
+
+    <main class="scroll-area space-y-3">
+      <p class="section-title">24 小时波动最大盘口</p>
+
+      <article class="td-card">
+        <div class="event-cover" style="background:linear-gradient(135deg,#0f766e,#14b8a6)">Oil Price Spike</div>
+        <div class="card-body">
+          <h3 class="card-title">布伦特原油本周是否突破 $95？</h3>
+          <div class="meta-row"><span>🏷️ 大宗商品</span><span>📅 截止 2026-03-08</span></div>
+          <div class="chart-row">
+            <div class="mini-chart">
+              <svg viewBox="0 0 120 40" width="100%" height="100%">
+                <polyline points="2,30 20,28 38,21 56,25 74,16 92,10 112,6" fill="none" stroke="#2e7d32" stroke-width="2.5" />
+              </svg>
+            </div>
+            <div class="delta-up">▲ +12.3%</div>
+          </div>
+          <div class="card-footer">
+            <span>📊 成交量：$820,000</span>
+            <span class="link-btn">查看原文 →</span>
+            <button class="fav-btn">♡</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="td-card">
+        <div class="event-cover" style="background:linear-gradient(135deg,#1d4ed8,#7c3aed)">Tech Policy</div>
+        <div class="card-body">
+          <h3 class="card-title">欧盟 AI 监管法案是否在本季度前正式生效？</h3>
+          <div class="meta-row"><span>🏷️ 政策</span><span>📅 截止 2026-06-30</span></div>
+          <div class="chart-row">
+            <div class="mini-chart">
+              <svg viewBox="0 0 120 40" width="100%" height="100%">
+                <polyline points="2,8 20,10 38,13 56,16 74,22 92,28 112,34" fill="none" stroke="#c62828" stroke-width="2.5" />
+              </svg>
+            </div>
+            <div class="delta-down">▼ -9.1%</div>
+          </div>
+          <div class="card-footer">
+            <span>📊 成交量：$560,000</span>
+            <span class="link-btn">查看原文 →</span>
+            <button class="fav-btn active">♥</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="td-card">
+        <div class="event-cover" style="background:linear-gradient(135deg,#b45309,#f97316)">Election Poll</div>
+        <div class="card-body">
+          <h3 class="card-title">英国大选民调中，执政党支持率本周是否反超？</h3>
+          <div class="meta-row"><span>🏷️ 选举</span><span>📅 截止 2026-03-12</span></div>
+          <div class="chart-row">
+            <div class="mini-chart">
+              <svg viewBox="0 0 120 40" width="100%" height="100%">
+                <polyline points="2,31 20,30 38,26 56,28 74,24 92,22 112,14" fill="none" stroke="#2e7d32" stroke-width="2.5" />
+              </svg>
+            </div>
+            <div class="delta-up">▲ +6.8%</div>
+          </div>
+          <div class="card-footer">
+            <span>📊 成交量：$490,000</span>
+            <span class="link-btn">查看原文 →</span>
+            <button class="fav-btn">♡</button>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <nav class="bottom-nav">
+      <button class="tab-item" data-tab-key="trending"><span>🔥</span><span>热点</span></button>
+      <button class="tab-item" data-tab-key="breaking"><span>⚡</span><span>突发</span></button>
+      <button class="tab-item" data-tab-key="latest"><span>🆕</span><span>最新</span></button>
+      <button class="tab-item" data-tab-key="whales"><span>🐳</span><span>巨鲸</span></button>
+      <button class="tab-item" data-tab-key="profile"><span>👤</span><span>我的</span></button>
+    </nav>
+  </div>
+
+  <script src="./common.js"></script>
+</body>
+</html>

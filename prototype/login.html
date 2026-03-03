@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PolyAgent - 登录</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./common.css" />
+</head>
+<body>
+  <div class="phone-page login-wrap">
+    <div class="login-logo">PA</div>
+    <h1 class="text-center text-2xl font-bold text-slate-800">PolyAgent</h1>
+    <p class="text-center text-sm text-slate-500 mt-2">PolyMarket 资讯速递小程序</p>
+
+    <section class="td-card mt-6 p-4">
+      <h2 class="text-sm font-semibold text-slate-700 mb-3">微信登录流程</h2>
+      <div class="step-item"><div class="step-dot">1</div><div class="step-text">未登录用户进入小程序，展示授权登录引导页</div></div>
+      <div class="step-item"><div class="step-dot">2</div><div class="step-text">点击「微信一键登录」，调用 wx.login() 获取 code</div></div>
+      <div class="step-item"><div class="step-dot">3</div><div class="step-text">发送 code 到云函数 getUserInfo，换取 openid 并落库</div></div>
+      <div class="step-item"><div class="step-dot">4</div><div class="step-text">登录成功后进入主页，个人中心展示头像昵称</div></div>
+    </section>
+
+    <div class="mt-6">
+      <button class="primary-btn">微信一键登录</button>
+      <button class="ghost-btn">先看看热点数据</button>
+    </div>
+
+    <p class="text-center text-xs text-slate-400 mt-auto mb-6">登录即同意《用户协议》与《隐私政策》</p>
+  </div>
+</body>
+</html>

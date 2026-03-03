@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PolyAgent - 我的</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./common.css" />
+</head>
+<body data-tab="profile">
+  <div class="phone-page app-shell relative">
+    <header class="top-bar">
+      <div class="top-row">
+        <div class="top-title">PolyAgent - 资讯速递</div>
+        <div class="clock" data-clock></div>
+        <button class="lang-switch" data-lang-toggle>简体中文 | EN</button>
+      </div>
+      <div class="page-title">👤 我的 Profile</div>
+    </header>
+
+    <main class="scroll-area space-y-3">
+      <section class="td-card p-4">
+        <div class="flex items-center gap-3">
+          <div class="avatar">M</div>
+          <div>
+            <h3 class="text-base font-bold">Morph User</h3>
+            <p class="text-xs text-slate-500 mt-1">已登录 · openid: oYhW7x***</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="section-title">我的收藏</div>
+
+      <article class="td-card">
+        <div class="card-body">
+          <h3 class="card-title">美国 2028 总统大选中，民主党候选人是否将赢得普选？</h3>
+          <div class="meta-row"><span>收藏于 2026-03-02 22:15</span></div>
+          <div class="card-footer">
+            <span>可点击查看详情</span>
+            <span class="link-btn">查看原文 →</span>
+            <button class="fav-btn active">♥</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="td-card">
+        <div class="card-body">
+          <h3 class="card-title">欧盟 AI 监管法案是否在本季度前正式生效？</h3>
+          <div class="meta-row"><span>收藏于 2026-03-01 11:03</span></div>
+          <div class="card-footer">
+            <span>长按可取消收藏</span>
+            <span class="link-btn">查看原文 →</span>
+            <button class="fav-btn active">♥</button>
+          </div>
+        </div>
+      </article>
+
+      <div class="section-title">设置</div>
+      <section class="td-card">
+        <button class="setting-row"><span>语言切换</span><span class="text-slate-400">简体中文 ></span></button>
+        <button class="setting-row"><span>关于我们</span><span class="text-slate-400">PolyAgent v1.0 ></span></button>
+        <button class="setting-row"><span>版本号</span><span class="text-slate-400">1.0.0</span></button>
+        <button class="setting-row"><span style="color:#c62828">退出登录</span><span class="text-slate-400">></span></button>
+      </section>
+    </main>
+
+    <nav class="bottom-nav">
+      <button class="tab-item" data-tab-key="trending"><span>🔥</span><span>热点</span></button>
+      <button class="tab-item" data-tab-key="breaking"><span>⚡</span><span>突发</span></button>
+      <button class="tab-item" data-tab-key="latest"><span>🆕</span><span>最新</span></button>
+      <button class="tab-item" data-tab-key="whales"><span>🐳</span><span>巨鲸</span></button>
+      <button class="tab-item" data-tab-key="profile"><span>👤</span><span>我的</span></button>
+    </nav>
+  </div>
+
+  <script src="./common.js"></script>
+</body>
+</html>

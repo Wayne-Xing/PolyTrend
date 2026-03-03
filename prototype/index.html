@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PolyAgent 原型总览</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      --bg-a: #e8f1ff;
+      --bg-b: #f6f9ff;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #64748b;
+      --brand: #1565c0;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'PingFang SC', 'Helvetica Neue', 'Noto Sans SC', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% 0%, #d7e8ff 0%, rgba(215, 232, 255, 0) 40%),
+        radial-gradient(circle at 100% 10%, #e5dcff 0%, rgba(229, 220, 255, 0) 36%),
+        linear-gradient(180deg, var(--bg-a), var(--bg-b));
+      padding: 28px;
+    }
+
+    .head {
+      max-width: 1280px;
+      margin: 0 auto 20px;
+      padding: 18px 20px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.75);
+      border: 1px solid rgba(148, 163, 184, 0.25);
+      backdrop-filter: blur(6px);
+    }
+
+    .head h1 {
+      margin: 0;
+      font-size: 24px;
+      color: #0f4a9d;
+    }
+
+    .head p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .screens {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(430px, 1fr));
+      gap: 20px;
+    }
+
+    .screen-card {
+      background: var(--panel);
+      border-radius: 18px;
+      border: 1px solid #dbe5f3;
+      box-shadow: 0 10px 30px rgba(30, 64, 175, 0.08);
+      padding: 16px;
+    }
+
+    .screen-title {
+      margin: 0 0 12px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #1e3a8a;
+    }
+
+    .phone-wrap {
+      width: 415px;
+      margin: 0 auto;
+      padding: 10px;
+      border-radius: 56px;
+      background: linear-gradient(145deg, #0b1728, #1e293b);
+      box-shadow: 0 14px 28px rgba(15, 23, 42, 0.35);
+      position: relative;
+    }
+
+    .island {
+      position: absolute;
+      width: 124px;
+      height: 28px;
+      border-radius: 999px;
+      background: #0a0a0a;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    iframe {
+      display: block;
+      width: 393px;
+      height: 852px;
+      border: none;
+      border-radius: 46px;
+      background: #f5f7fa;
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 14px; }
+      .screens { grid-template-columns: 1fr; }
+      .screen-card { overflow-x: auto; }
+      .phone-wrap { width: 415px; }
+    }
+  </style>
+</head>
+<body>
+  <section class="head">
+    <h1>PolyAgent 小程序原型总览</h1>
+    <p>基于开发设计文档 v1.0，使用独立 HTML 页面 + iframe 平铺展示（393 x 852，iPhone 15 Pro 规格）。</p>
+  </section>
+
+  <section class="screens">
+    <article class="screen-card">
+      <h2 class="screen-title">登录引导 · login.html</h2>
+      <div class="phone-wrap"><div class="island"></div><iframe src="./login.html" title="login"></iframe></div>
+    </article>
+
+    <article class="screen-card">
+      <h2 class="screen-title">热点页 · trending.html</h2>
+      <div class="phone-wrap"><div class="island"></div><iframe src="./trending.html" title="trending"></iframe></div>
+    </article>
+
+    <article class="screen-card">
+      <h2 class="screen-title">突发页 · breaking.html</h2>
+      <div class="phone-wrap"><div class="island"></div><iframe src="./breaking.html" title="breaking"></iframe></div>
+    </article>
+
+    <article class="screen-card">
+      <h2 class="screen-title">最新页 · latest.html</h2>
+      <div class="phone-wrap"><div class="island"></div><iframe src="./latest.html" title="latest"></iframe></div>
+    </article>
+
+    <article class="screen-card">
+      <h2 class="screen-title">巨鲸页 · whales.html</h2>
+      <div class="phone-wrap"><div class="island"></div><iframe src="./whales.html" title="whales"></iframe></div>
+    </article>
+
+    <article class="screen-card">
+      <h2 class="screen-title">个人中心 · profile.html</h2>
+      <div class="phone-wrap"><div class="island"></div><iframe src="./profile.html" title="profile"></iframe></div>
+    </article>
+
+    <article class="screen-card">
+      <h2 class="screen-title">事件详情占位 · event-detail.html</h2>
+      <div class="phone-wrap"><div class="island"></div><iframe src="./event-detail.html" title="event detail"></iframe></div>
+    </article>
+  </section>
+</body>
+</html>
