@@ -7,87 +7,345 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./common.css" />
 </head>
-<body data-tab="trending">
+<body data-tab="trending" data-doc-title-zh="PolyTrend - 热点" data-doc-title-en="PolyTrend - Trending">
   <div class="phone-page app-shell relative">
     <header class="top-bar">
       <div class="top-row">
-        <div class="top-title">PolyTrend - 资讯速递</div>
+        <div class="top-title" data-i18n-zh="PolyTrend - 资讯速递" data-i18n-en="PolyTrend - News Feed">PolyTrend - 资讯速递</div>
         <div class="clock" data-clock></div>
         <button class="lang-switch" data-lang-toggle>简体中文 | EN</button>
       </div>
-      <div class="page-title">🔥 热点 Trending</div>
+      <div class="page-title" data-title-zh="🔥 热点" data-title-en="🔥 Trending">🔥 热点</div>
     </header>
 
     <main class="scroll-area space-y-3">
-      <p class="section-title">24 小时热度 Top 10（原型示例）</p>
+      <p class="section-title" data-i18n-zh="过去 24 小时内最热门的预测盘口" data-i18n-en="Most Popular Prediction Markets in the Last 24 Hours">过去 24 小时内最热门的预测盘口</p>
 
-      <article class="td-card">
-        <div class="event-cover">US Election 2028</div>
-        <div class="card-body">
-          <h3 class="card-title">美国 2028 总统大选中，民主党候选人是否将赢得普选？</h3>
-          <div class="meta-row">
-            <span>🏷️ 选举</span><span>📅 截止 2028-11-06</span><span>💧 $2.1M</span>
-          </div>
-          <div class="progress-wrap">
-            <div class="progress-bar"><div class="progress-yes" style="width:72%"></div></div>
-            <div class="progress-label"><span style="color:#2e7d32">Yes 72%</span><span style="color:#c62828">No 28%</span></div>
-          </div>
-          <div class="card-footer">
-            <span>📊 成交量：$1,240,000</span>
-            <span class="link-btn">查看原文 →</span>
-            <button class="fav-btn">♡</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="td-card">
-        <div class="event-cover" style="background:linear-gradient(135deg,#0c5b5b,#38b2ac)">BTC ETF</div>
-        <div class="card-body">
-          <h3 class="card-title">2026 年底前，美国是否会批准新的比特币现货 ETF 扩容方案？</h3>
-          <div class="meta-row">
-            <span>🏷️ Crypto</span><span>📅 截止 2026-12-31</span><span>💧 $1.4M</span>
-          </div>
-          <div class="progress-wrap">
-            <div class="progress-bar"><div class="progress-yes" style="width:61%"></div></div>
-            <div class="progress-label"><span style="color:#2e7d32">Yes 61%</span><span style="color:#c62828">No 39%</span></div>
-          </div>
-          <div class="card-footer">
-            <span>📊 成交量：$980,000</span>
-            <span class="link-btn">查看原文 →</span>
-            <button class="fav-btn active">♥</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="td-card">
-        <div class="event-cover" style="background:linear-gradient(135deg,#8b5cf6,#4f46e5)">Fed Rate</div>
-        <div class="card-body">
-          <h3 class="card-title">美联储将在下次议息会议中降息 25bp 及以上吗？</h3>
-          <div class="meta-row">
-            <span>🏷️ 宏观</span><span>📅 截止 2026-06-18</span><span>💧 $950K</span>
-          </div>
-          <div class="progress-wrap">
-            <div class="progress-bar"><div class="progress-yes" style="width:48%"></div></div>
-            <div class="progress-label"><span style="color:#2e7d32">Yes 48%</span><span style="color:#c62828">No 52%</span></div>
-          </div>
-          <div class="card-footer">
-            <span>📊 成交量：$640,000</span>
-            <span class="link-btn">查看原文 →</span>
-            <button class="fav-btn">♡</button>
-          </div>
-        </div>
-      </article>
+      <section class="market-grid" id="marketGrid"></section>
     </main>
 
     <nav class="bottom-nav">
-      <button class="tab-item" data-tab-key="trending"><span>🔥</span><span>热点</span></button>
-      <button class="tab-item" data-tab-key="breaking"><span>⚡</span><span>突发</span></button>
-      <button class="tab-item" data-tab-key="latest"><span>🆕</span><span>最新</span></button>
-      <button class="tab-item" data-tab-key="whales"><span>🐳</span><span>巨鲸</span></button>
-      <button class="tab-item" data-tab-key="profile"><span>👤</span><span>我的</span></button>
+      <button class="tab-item" data-tab-key="trending"><span>🔥</span><span data-i18n-zh="热点" data-i18n-en="Trending">热点</span></button>
+      <button class="tab-item" data-tab-key="breaking"><span>⚡</span><span data-i18n-zh="突发" data-i18n-en="Breaking">突发</span></button>
+      <button class="tab-item" data-tab-key="latest"><span>🆕</span><span data-i18n-zh="最新" data-i18n-en="New">最新</span></button>
+      <button class="tab-item" data-tab-key="whales"><span>🐳</span><span data-i18n-zh="巨鲸" data-i18n-en="Whales">巨鲸</span></button>
+      <button class="tab-item" data-tab-key="profile"><span>👤</span><span data-i18n-zh="我的" data-i18n-en="Profile">我的</span></button>
     </nav>
   </div>
 
+  <script>
+    (function () {
+      var marketGrid = document.getElementById('marketGrid');
+      if (!marketGrid) return;
+
+      var state = { markets: [] };
+      var fallbackCoverPalette = [
+        'linear-gradient(135deg, #0f4a9d 0%, #2d7dd2 100%)',
+        'linear-gradient(135deg, #0f766e 0%, #22c55e 100%)',
+        'linear-gradient(135deg, #7c3aed 0%, #ec4899 100%)',
+        'linear-gradient(135deg, #b45309 0%, #f97316 100%)'
+      ];
+
+      var mockTrendingResponse = {
+        markets: [
+          {
+            id: 'middle-east-iran',
+            badge: '🇮🇶',
+            coverTitle: { zh: '中东局势追踪', en: 'Middle East Tracker' },
+            topic: { zh: '中东局势', en: 'Middle East' },
+            deadline: { zh: '截止 6月30日', en: 'Ends Jun 30' },
+            question: { zh: '伊朗政权会在6月30日前垮台吗？', en: 'Will Iran\'s regime fall before June 30?' },
+            topPercent: 39,
+            topTrend: 'down',
+            volume: { zh: '$7M 交易量', en: '$7M Volume' },
+            image: 'https://picsum.photos/id/1011/900/500',
+            outcomes: [
+              { label: { zh: '是', en: 'Yes' }, percent: 39, tone: 'good' },
+              { label: { zh: '否', en: 'No' }, percent: 61, tone: 'bad' }
+            ],
+            favorite: false
+          },
+          {
+            id: 'texas-primary',
+            badge: '🇺🇸',
+            coverTitle: { zh: '得州州长初选', en: 'Texas GOP Primary' },
+            topic: { zh: '美国选举', en: 'US Election' },
+            deadline: { zh: '每周更新', en: 'Weekly update' },
+            question: { zh: '谁将赢得得州州长共和党初选？', en: 'Who will win the Texas Republican gubernatorial primary?' },
+            topPercent: 57,
+            topTrend: 'up',
+            volume: { zh: '$6M 交易量', en: '$6M Volume' },
+            image: 'https://picsum.photos/id/1024/900/500',
+            outcomes: [
+              { label: { zh: '格雷格·阿博特', en: 'Greg Abbott' }, percent: 57, tone: 'neutral' },
+              { label: { zh: '丹·帕特里克', en: 'Dan Patrick' }, percent: 31, tone: 'neutral' },
+              { label: { zh: '肯·帕克斯顿', en: 'Ken Paxton' }, percent: 12, tone: 'neutral' }
+            ],
+            chips: [
+              { label: { zh: '阿博特', en: 'Abbott' }, tone: 'neutral' },
+              { label: { zh: '帕特里克', en: 'Patrick' }, tone: 'neutral' },
+              { label: { zh: '帕克斯顿', en: 'Paxton' }, tone: 'neutral' }
+            ],
+            favorite: false
+          },
+          {
+            id: 'btc-5m',
+            badge: '₿',
+            coverTitle: { zh: 'BTC 超短线', en: 'BTC Ultra-short' },
+            topic: { zh: '加密市场', en: 'Crypto' },
+            deadline: { zh: '5分钟结算', en: '5-minute settlement' },
+            question: { zh: 'BTC 5分钟后是涨还是跌？', en: 'Will BTC be up or down in 5 minutes?' },
+            topPercent: 49,
+            topTrend: 'neutral',
+            volume: { zh: '$5 结算', en: '$5 Settlement' },
+            image: 'https://picsum.photos/id/1060/900/500',
+            outcomes: [
+              { label: { zh: '涨', en: 'Up' }, percent: 49, tone: 'good' },
+              { label: { zh: '跌', en: 'Down' }, percent: 51, tone: 'bad' }
+            ],
+            favorite: false
+          },
+          {
+            id: 'nba-lakers-pelicans',
+            badge: '🏀',
+            coverTitle: { zh: 'NBA 常规赛', en: 'NBA Regular Season' },
+            topic: { zh: '体育', en: 'Sports' },
+            deadline: { zh: '03/15 10:00', en: '03/15 10:00' },
+            question: { zh: '湖人 vs 鹈鹕谁将获胜？', en: 'Who will win: Lakers vs Pelicans?' },
+            topPercent: 65,
+            topTrend: 'up',
+            volume: { zh: '$3M 交易量', en: '$3M Volume' },
+            image: 'https://picsum.photos/id/1015/900/500',
+            outcomes: [
+              { label: { zh: '湖人', en: 'Lakers' }, percent: 65, tone: 'neutral' },
+              { label: { zh: '鹈鹕', en: 'Pelicans' }, percent: 35, tone: 'neutral' }
+            ],
+            favorite: true
+          },
+          {
+            id: 'epl-man-city-forest',
+            badge: '⚽',
+            coverTitle: { zh: '英超焦点战', en: 'EPL Clash' },
+            topic: { zh: '英超 EPL', en: 'EPL' },
+            deadline: { zh: '明日 03:30', en: 'Tomorrow 03:30' },
+            question: { zh: '曼城 vs 诺丁汉森林赛果？', en: 'Result: Man City vs Nottingham Forest?' },
+            topPercent: 71,
+            topTrend: 'up',
+            volume: { zh: '$1M 交易量', en: '$1M Volume' },
+            image: 'https://picsum.photos/id/1040/900/500',
+            outcomes: [
+              { label: { zh: '曼城胜', en: 'Man City' }, percent: 71, tone: 'neutral' },
+              { label: { zh: '平局', en: 'Draw' }, percent: 12, tone: 'neutral' },
+              { label: { zh: '森林胜', en: 'Forest' }, percent: 17, tone: 'neutral' }
+            ],
+            chips: [
+              { label: { zh: '曼城', en: 'Man City' }, tone: 'neutral' },
+              { label: { zh: '平局', en: 'Draw' }, tone: 'neutral' },
+              { label: { zh: '森林', en: 'Forest' }, tone: 'neutral' }
+            ],
+            favorite: false
+          },
+          {
+            id: 'spx-range',
+            badge: '📈',
+            coverTitle: { zh: '标普500 月末点位', en: 'S&P 500 Month-end' },
+            topic: { zh: '美股指数', en: 'US Index' },
+            deadline: { zh: '月底结算', en: 'Month-end settlement' },
+            question: { zh: '标普500本月收盘落在哪个区间？', en: 'Which range will the S&P 500 close in this month?' },
+            topPercent: 41,
+            topTrend: 'neutral',
+            volume: { zh: '$825K 交易量', en: '$825K Volume' },
+            image: '',
+            outcomes: [
+              { label: { zh: '> 6200', en: '> 6200' }, percent: 26, tone: 'neutral' },
+              { label: { zh: '6100-6200', en: '6100-6200' }, percent: 41, tone: 'neutral' },
+              { label: { zh: '6000-6100', en: '6000-6100' }, percent: 22, tone: 'neutral' },
+              { label: { zh: '< 6000', en: '< 6000' }, percent: 11, tone: 'neutral' }
+            ],
+            favorite: false
+          }
+        ]
+      };
+
+      function getLang() {
+        return document.body.dataset.lang === 'en' ? 'en' : 'zh';
+      }
+
+      function pickText(value, lang) {
+        if (value === null || value === undefined) return '';
+        if (typeof value === 'string' || typeof value === 'number') return String(value);
+        if (typeof value === 'object') {
+          return value[lang] || value.zh || value.en || '';
+        }
+        return '';
+      }
+
+      function escapeHtml(text) {
+        return String(text)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function escapeAttr(text) {
+        return escapeHtml(text).replace(/`/g, '&#96;');
+      }
+
+      function normalizeMarkets(payload) {
+        if (!payload) return [];
+        if (Array.isArray(payload)) return payload;
+        if (Array.isArray(payload.markets)) return payload.markets;
+        if (Array.isArray(payload.data)) return payload.data;
+        if (payload.result && Array.isArray(payload.result.list)) return payload.result.list;
+        return [];
+      }
+
+      function formatPercent(value) {
+        if (typeof value === 'number' && isFinite(value)) {
+          return Math.round(value) + '%';
+        }
+        var text = String(value || '').trim();
+        if (!text) return '--';
+        return text.endsWith('%') ? text : (text + '%');
+      }
+
+      function getTrendClass(trend) {
+        if (trend === 'up' || trend === 'down') return trend;
+        return 'neutral';
+      }
+
+      function getToneClass(tone) {
+        if (tone === 'good') return 'good';
+        if (tone === 'bad') return 'bad';
+        return 'neutral';
+      }
+
+      function getGridClass(count) {
+        if (count >= 4) return 'four';
+        if (count === 3) return 'three';
+        return 'two';
+      }
+
+      function getCoverStyle(market, index) {
+        var image = market.image || market.coverImage || market.banner;
+        if (image) {
+          return 'background-image: linear-gradient(135deg, rgba(9,21,43,0.08), rgba(9,21,43,0.55)), url(&quot;' + escapeAttr(image) + '&quot;);';
+        }
+        return 'background: ' + fallbackCoverPalette[index % fallbackCoverPalette.length] + ';';
+      }
+
+      function buildMarketCard(market, index, lang) {
+        var outcomes = Array.isArray(market.outcomes) ? market.outcomes : (Array.isArray(market.options) ? market.options : []);
+        if (!outcomes.length) {
+          outcomes = [{ label: { zh: '等待数据', en: 'Awaiting data' }, percent: '--', tone: 'neutral' }];
+        }
+        var chips = Array.isArray(market.chips) && market.chips.length
+          ? market.chips
+          : outcomes.slice(0, 4).map(function (item) {
+              return { label: item.label, tone: item.tone || 'neutral' };
+            });
+        if (!chips.length) {
+          chips = [{ label: { zh: '暂无选项', en: 'No options' }, tone: 'neutral' }];
+        }
+
+        var topPercentSource = market.topPercent !== undefined ? market.topPercent : market.probability;
+        if ((topPercentSource === null || topPercentSource === undefined) && outcomes.length) {
+          topPercentSource = outcomes[0].percent;
+        }
+
+        var coverTitle = pickText(market.coverTitle || market.cover || market.title, lang) || pickText(market.topic || market.category, lang);
+        var topic = pickText(market.topic || market.category, lang);
+        var deadline = pickText(market.deadline || market.endTimeText || market.endTime, lang);
+        var question = pickText(market.question || market.title, lang);
+        var volume = pickText(market.volume || market.volumeText || market.turnover, lang);
+        var badge = pickText(market.badge || market.emoji, lang) || '📰';
+        if (!topic) topic = (lang === 'en' ? 'Market' : '市场');
+        if (!deadline) deadline = (lang === 'en' ? 'Live updates' : '实时更新');
+        if (!question) question = topic;
+        if (!volume) volume = (lang === 'en' ? 'Volume --' : '交易量 --');
+        var topPercent = formatPercent(topPercentSource);
+        var trendClass = getTrendClass(market.topTrend || market.trend);
+        var isFavorite = !!(market.favorite || market.isFavorite);
+        var favorite = isFavorite ? '♥' : '♡';
+        var favoriteClass = isFavorite ? 'fav-btn active' : 'fav-btn';
+
+        var outcomeRows = outcomes.map(function (item) {
+          return '<div class="outcome-row"><span>' + escapeHtml(pickText(item.label, lang)) + '</span><strong>' + escapeHtml(formatPercent(item.percent)) + '</strong></div>';
+        }).join('');
+
+        var optionGrid = chips.map(function (item) {
+          return '<span class="option-chip ' + getToneClass(item.tone) + '">' + escapeHtml(pickText(item.label, lang)) + '</span>';
+        }).join('');
+
+        return (
+          '<article class="td-card market-card">' +
+            '<div class="event-cover market-cover" style="' + getCoverStyle(market, index) + '">' +
+              '<div class="market-cover-content">' +
+                '<span class="market-cover-title">' + escapeHtml(coverTitle) + '</span>' +
+              '</div>' +
+            '</div>' +
+            '<div class="card-body">' +
+              '<div class="market-head">' +
+                '<span class="market-badge">' + escapeHtml(badge) + '</span>' +
+                '<div class="market-head-meta">' +
+                  '<p class="market-topic">' + escapeHtml(topic) + '</p>' +
+                  '<p class="market-time">' + escapeHtml(deadline) + '</p>' +
+                '</div>' +
+                '<span class="market-prob ' + trendClass + '">' + escapeHtml(topPercent) + '</span>' +
+              '</div>' +
+              '<h3 class="market-question">' + escapeHtml(question) + '</h3>' +
+              '<div class="outcome-list">' + outcomeRows + '</div>' +
+              '<div class="option-grid ' + getGridClass(chips.length) + '">' + optionGrid + '</div>' +
+              '<div class="card-footer market-footer">' +
+                '<span>' + escapeHtml(volume) + '</span>' +
+                '<button class="' + favoriteClass + '">' + favorite + '</button>' +
+              '</div>' +
+            '</div>' +
+          '</article>'
+        );
+      }
+
+      function renderMarkets() {
+        var lang = getLang();
+        marketGrid.innerHTML = state.markets.map(function (market, index) {
+          return buildMarketCard(market, index, lang);
+        }).join('');
+      }
+
+      async function loadMarkets() {
+        var injected = normalizeMarkets(window.__POLYTREND_TRENDING_RESPONSE);
+        if (injected.length) {
+          state.markets = injected;
+          renderMarkets();
+          return;
+        }
+
+        var endpoint = window.__POLYTREND_TRENDING_ENDPOINT;
+        if (!endpoint) {
+          state.markets = mockTrendingResponse.markets;
+          renderMarkets();
+          return;
+        }
+
+        try {
+          var resp = await fetch(endpoint, { method: 'GET', cache: 'no-store' });
+          if (!resp.ok) throw new Error('Failed to fetch trending markets');
+          var json = await resp.json();
+          var markets = normalizeMarkets(json);
+          state.markets = markets.length ? markets : mockTrendingResponse.markets;
+        } catch (err) {
+          state.markets = mockTrendingResponse.markets;
+        }
+
+        renderMarkets();
+      }
+
+      document.addEventListener('polytrend:languagechange', renderMarkets);
+      window.addEventListener('DOMContentLoaded', loadMarkets);
+    })();
+  </script>
   <script src="./common.js"></script>
 </body>
 </html>

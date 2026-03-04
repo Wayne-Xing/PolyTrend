@@ -7,26 +7,30 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./common.css" />
 </head>
-<body>
+<body data-doc-title-zh="PolyTrend - 登录" data-doc-title-en="PolyTrend - Login">
   <div class="phone-page login-wrap">
-    <div class="login-logo">PA</div>
+    <div class="login-lang-row">
+      <button class="lang-switch login-lang-switch" data-lang-toggle>简体中文 | EN</button>
+    </div>
+    <div class="login-logo">PT</div>
     <h1 class="text-center text-2xl font-bold text-slate-800">PolyTrend</h1>
-    <p class="text-center text-sm text-slate-500 mt-2">PolyMarket 资讯速递小程序</p>
+    <p class="text-center text-sm text-slate-500 mt-2" data-i18n-zh="PolyMarket 资讯速递小程序" data-i18n-en="PolyMarket News Mini Program">PolyMarket 资讯速递小程序</p>
 
     <section class="td-card mt-6 p-4">
-      <h2 class="text-sm font-semibold text-slate-700 mb-3">微信登录流程</h2>
-      <div class="step-item"><div class="step-dot">1</div><div class="step-text">未登录用户进入小程序，展示授权登录引导页</div></div>
-      <div class="step-item"><div class="step-dot">2</div><div class="step-text">点击「微信一键登录」，调用 wx.login() 获取 code</div></div>
-      <div class="step-item"><div class="step-dot">3</div><div class="step-text">发送 code 到云函数 getUserInfo，换取 openid 并落库</div></div>
-      <div class="step-item"><div class="step-dot">4</div><div class="step-text">登录成功后进入主页，个人中心展示头像昵称</div></div>
+      <h2 class="text-sm font-semibold text-slate-700 mb-3" data-i18n-zh="小程序介绍" data-i18n-en="Mini Program Overview">小程序介绍</h2>
+      <div class="step-item"><div class="step-dot">1</div><div class="step-text" data-i18n-zh="聚合 Polymarket 热门事件与市场变化，帮助你快速掌握重点信息。" data-i18n-en="Aggregates popular Polymarket events and market moves so you can grasp key updates quickly.">聚合 Polymarket 热门事件与市场变化，帮助你快速掌握重点信息。</div></div>
+      <div class="step-item"><div class="step-dot">2</div><div class="step-text" data-i18n-zh="支持浏览事件背景、概率走势和关键时间点，方便持续追踪。" data-i18n-en="Browse event context, probability trends, and key timestamps for continuous tracking.">支持浏览事件背景、概率走势和关键时间点，方便持续追踪。</div></div>
+      <div class="step-item"><div class="step-dot">3</div><div class="step-text" data-i18n-zh="登录后可收藏感兴趣的问题，后续可在收藏列表一键回看。" data-i18n-en="After login, you can favorite questions and revisit them anytime from your favorites list.">登录后可收藏感兴趣的问题，后续可在收藏列表一键回看。</div></div>
+      <div class="step-item"><div class="step-dot">4</div><div class="step-text" data-i18n-zh="收藏后会持续同步最新状态，避免错过你关注的热点变化。" data-i18n-en="Favorited items stay in sync with the latest status, so you won't miss important changes.">收藏后会持续同步最新状态，避免错过你关注的热点变化。</div></div>
     </section>
 
     <div class="mt-6">
-      <button class="primary-btn">微信一键登录</button>
-      <button class="ghost-btn">先看看热点数据</button>
+      <button class="primary-btn" data-i18n-zh="微信一键登录" data-i18n-en="One-tap WeChat Login">微信一键登录</button>
+      <button class="ghost-btn" data-i18n-zh="先看看热点数据" data-i18n-en="Browse Trending First">先看看热点数据</button>
     </div>
 
-    <p class="text-center text-xs text-slate-400 mt-auto mb-6">登录即同意《用户协议》与《隐私政策》</p>
+    <p class="text-center text-xs text-slate-400 mt-auto mb-6" data-i18n-zh="登录即同意《用户协议》与《隐私政策》" data-i18n-en="By logging in, you agree to the User Agreement and Privacy Policy.">登录即同意《用户协议》与《隐私政策》</p>
   </div>
+  <script src="./common.js"></script>
 </body>
 </html>

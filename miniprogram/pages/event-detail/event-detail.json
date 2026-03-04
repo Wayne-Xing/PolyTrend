@@ -1,9 +1,0 @@
-{
-  "usingComponents": {
-    "t-navbar": "tdesign-miniprogram/navbar/navbar",
-    "t-button": "tdesign-miniprogram/button/button",
-    "t-empty": "tdesign-miniprogram/empty/empty",
-    "t-divider": "tdesign-miniprogram/divider/divider",
-    "t-tag": "tdesign-miniprogram/tag/tag"
-  }
-}

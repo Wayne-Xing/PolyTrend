@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PolyTrend 微信小程序 — 开发设计文档 v1.0</title>
+<title>PolyTrend 微信小程序 — 开发设计文档 v1.1</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: -apple-system, 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif; background: #F5F7FA; color: #1A1A2E; line-height: 1.7; font-size: 15px; }
@@ -129,10 +129,10 @@
   <div class="subtitle">微信小程序开发设计文档<br><small style="font-size:16px;opacity:0.7">PolyMarket 资讯速递平台</small></div>
   <div class="cover-meta">
     <div class="cover-meta-row">
-      <div class="cover-meta-label">文档版本</div><div class="cover-meta-val">v1.0.0（初稿）</div>
+      <div class="cover-meta-label">文档版本</div><div class="cover-meta-val">v1.1.0（原型优化版）</div>
     </div>
     <div class="cover-meta-row">
-      <div class="cover-meta-label">文档日期</div><div class="cover-meta-val">2025年3月</div>
+      <div class="cover-meta-label">文档日期</div><div class="cover-meta-val">2026年3月4日</div>
     </div>
     <div class="cover-meta-row">
       <div class="cover-meta-label">平台</div><div class="cover-meta-val">微信小程序</div>
@@ -200,8 +200,8 @@
         <tr><td>微信原生框架</td><td>基础库 ≥ 3.0</td><td>小程序核心框架</td></tr>
         <tr><td>WXML + WXSS</td><td>官方标准</td><td>页面结构与样式</td></tr>
         <tr><td>JavaScript (ES6+)</td><td>现代语法</td><td>业务逻辑</td></tr>
-        <tr><td>WeUI 组件库</td><td>最新版</td><td>基础 UI 组件</td></tr>
-        <tr><td>wx-charts</td><td>2.x</td><td>小程序内迷你趋势折线图</td></tr>
+        <tr><td>TDesign Miniprogram</td><td>最新版</td><td>基础 UI 组件库（按钮、列表、弹窗、输入等）</td></tr>
+        <tr><td>原型先行（HTML/CSS/JS）</td><td>Prototype 基线</td><td>先验证交互与信息架构，再进行小程序页面开发</td></tr>
       </tbody>
     </table>
 
@@ -384,42 +384,32 @@ exports.main = async (event, context) => {
       <div class="tab-item"><span class="icon">👤</span>我的</div>
     </div>
 
-    <h3>4.4 Event 卡片结构</h3>
+    <h3>4.4 Event 卡片结构（新版排版）</h3>
     <div class="card-mockup">
 ┌────────────────────────────────────────────────┐<br>
-│  <span style="background:#E3F2FD;color:#1565C0;padding:0 6px;border-radius:4px">EVENT 封面图（image 字段 · 16:9比例 · 180rpx高）</span>      │<br>
+│  <span style="background:#E3F2FD;color:#1565C0;padding:0 6px;border-radius:4px">封面区（image 字段优先，支持渐变兜底）</span>              │<br>
 ├────────────────────────────────────────────────┤<br>
-│  <strong>📌 事件标题（title，最多展示2行，超出省略）</strong>        │<br>
-│  🏷️ 选举  │  📅 截止 2025-11-04  │  💧 $2.1M流动性│<br>
+│  🏷️ 徽标 + 分类 + 截止时间 + 主概率（圆角百分比）              │<br>
+│  <strong>📌 问题标题（最多2行，超出省略）</strong>                      │<br>
+│  选项列表（可为 Yes/No，也可为多结果，如 3~4 个候选项）          │<br>
+│  选项标签栅格（2/3/4 列自适应）                                 │<br>
 ├────────────────────────────────────────────────┤<br>
-│  <span class="highlight">热点模块：投注比例条</span>                              │<br>
-│  Yes ████████████░░░░  72%  │  No 28%           │<br>
-│  <span class="highlight">突发/最新模块：迷你趋势折线图 + 变化量</span>           │<br>
-│  [📈迷你图]  ▲ +12.3%（过去24h）                 │<br>
-├────────────────────────────────────────────────┤<br>
-│  📊 成交量：$1,240,000 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[查看原文 →]  ♡ │<br>
+│  底部：成交量 + 收藏按钮（♡/♥）                                  │<br>
 └────────────────────────────────────────────────┘
     </div>
 
-    <h4>image 字段使用规范</h4>
+    <h4>image 字段适配规范（已落地）</h4>
     <ul>
-      <li>API 返回的 image 字段为 IPFS 或 CDN 链接，直接用 <code>&lt;image&gt;</code> 标签展示，比例固定 16:9，高度约 180rpx</li>
-      <li>image 为空时，用<strong>渐变色占位图</strong>（主色 → 辅助色渐变背景 + 事件首字母）替代，保证卡片高度统一</li>
-      <li>添加 <code>lazy-load</code> 属性开启懒加载，避免一次性加载过多图片</li>
+      <li>统一读取 <code>image</code> 字段作为封面图，支持不同业务卡片（热点/突发/最新/巨鲸）复用同一视觉策略</li>
+      <li>image 为空时使用<strong>品牌渐变封面</strong>兜底，保证卡片高度、信息层级和浏览节奏一致</li>
+      <li>封面图上叠加轻遮罩与标题胶囊，兼顾“高级感”和可读性</li>
     </ul>
 
-    <h4>热点模块 — 投注比例展示</h4>
+    <h4>多结果市场卡片规范（已落地）</h4>
     <ul>
-      <li>参考官网设计：进度条样式，Yes 端绿色，No 端红色</li>
-      <li>文字标注：<code>Yes 72%  |  No 28%</code></li>
-      <li>多选盘口（>2个选项）：展示前3名 + 「其他」</li>
-    </ul>
-
-    <h4>突发/最新模块 — 趋势图展示</h4>
-    <ul>
-      <li>使用 wx-charts 绘制微型折线图，高度约 80rpx</li>
-      <li>仅展示最近 24 小时价格走势，涨为绿色，跌为红色</li>
-      <li>右侧标注变化量：<code style="color:#2E7D32">▲ +12.3%</code> 或 <code style="color:#C62828">▼ -8.5%</code></li>
+      <li>不再仅限 Yes/No，支持多候选项、多区间和复合选项盘口</li>
+      <li>主列表展示结果排行和概率，底部选项区按数量自动切换 2/3/4 列排版</li>
+      <li>Trending 与 Latest 的卡片排版统一，确保跨页阅读一致性</li>
     </ul>
 
     <h4>巨鲸模块 — 交易卡片</h4>
@@ -437,7 +427,10 @@ exports.main = async (event, context) => {
         <tr><td>下拉刷新</td><td>所有列表页开启 enablePullDownRefresh，刷新后强制绕过缓存重新请求</td></tr>
         <tr><td>上拉加载更多</td><td>默认加载10条，上拉可再加载10条，最多50条</td></tr>
         <tr><td>点击卡片</td><td>整张卡片可点击，跳转 WebView 页面展示 PolyMarket 原文</td></tr>
-        <tr><td>收藏</td><td>卡片右上角 ♡/♥ 图标，点击切换，调用 manageFavorite 云函数</td></tr>
+        <tr><td>收藏</td><td>卡片右上角 ♡/♥ 图标点击切换，支持从列表页进入收藏管理页进行统一管理</td></tr>
+        <tr><td>收藏页左滑删除</td><td>收藏卡片支持左滑露出删除按钮，单条快速移除</td></tr>
+        <tr><td>收藏页拖拽排序</td><td>卡片右侧拖拽手柄支持重排收藏优先级</td></tr>
+        <tr><td>收藏页选择模式</td><td>默认隐藏勾选框，点击“全选”进入选择模式并支持批量删除</td></tr>
         <tr><td>加载中</td><td>骨架屏（Skeleton）代替 loading 圈，减少白屏感</td></tr>
         <tr><td>空状态</td><td>API 无数据时，展示插画 + 提示文字 + 刷新按钮</td></tr>
         <tr><td>网络错误</td><td>catch 错误后展示「网络错误，点击重试」提示</td></tr>
@@ -510,8 +503,18 @@ exports.main = async (event, context) => {
     <h3>5.3 个人中心页面结构</h3>
     <ul>
       <li><strong>顶部</strong>：用户头像 + 昵称 + 登录状态</li>
-      <li><strong>中部</strong>：收藏列表，与主页卡片风格一致，可点击查看 / 长按取消收藏</li>
+      <li><strong>中部</strong>：提供「我的收藏」入口，下钻至 favorites 管理页</li>
       <li><strong>底部设置区</strong>：语言切换 / 关于我们 / 版本号 / 退出登录</li>
+    </ul>
+
+    <h3>5.4 收藏管理页（favorites）</h3>
+    <ul>
+      <li><strong>入口</strong>：Profile 页点击「我的收藏」进入 <code>favorites.html</code>，支持返回 Profile</li>
+      <li><strong>信息密度</strong>：收藏卡片仅保留缩略信息（缩略图、标题、时间、分类、概率）</li>
+      <li><strong>交互 1</strong>：左滑卡片显示删除按钮，单条删除</li>
+      <li><strong>交互 2</strong>：右侧拖拽手柄排序，调整收藏优先级</li>
+      <li><strong>交互 3</strong>：默认隐藏勾选框，点击“全选”进入选择模式，支持批量删除</li>
+      <li><strong>国际化</strong>：页面标题、按钮、筛选与空状态文案均随语言切换</li>
     </ul>
   </div>
 </div>
@@ -521,7 +524,8 @@ exports.main = async (event, context) => {
   <div class="chapter-header"><h2>第六章 &nbsp;国际化（多语言）方案</h2></div>
   <div class="chapter-body">
     <h3>6.1 实现思路</h3>
-    <p>维护全局语言配置文件，切换语言时更新 <code>app.globalData.lang</code>，所有页面从该变量读取对应语言文本，同时持久化到本地存储。</p>
+    <p>维护全局语言配置文件，切换语言时更新 <code>app.globalData.lang</code>（或页面级 <code>data-lang</code> 状态），所有页面从该变量读取对应语言文本并持久化到本地存储。</p>
+    <p>语言切换需覆盖<strong>全部可见文本</strong>：顶部标题、分区标题、卡片标题、按钮文案、空状态、登录页、事件详情页、收藏管理页等。</p>
 
     <h3>6.2 语言文件结构</h3>
     <div class="code-block"><pre><span class="comment">// i18n/zh-CN.js</span>
@@ -566,6 +570,20 @@ App({
     getCurrentPages().forEach(p => p.onLoad && p.onLoad(p.options));
   }
 });</pre></div>
+
+    <h3>6.4 页面级语言映射示例（已落地）</h3>
+    <table class="tbl">
+      <thead><tr><th>页面</th><th>简体中文（zh）</th><th>英文（en）</th></tr></thead>
+      <tbody>
+        <tr><td>trending 顶部标题</td><td>热点</td><td>Trending</td></tr>
+        <tr><td>breaking 顶部标题</td><td>突发</td><td>Breaking</td></tr>
+        <tr><td>latest 顶部标题</td><td>最新</td><td>New</td></tr>
+        <tr><td>event-detail 顶部标题</td><td>事件详情</td><td>WebView</td></tr>
+        <tr><td>示例事件标题</td><td>美国 2028 总统大选中，民主党候选人是否将赢得普选？</td><td>Will the Democratic candidate win the popular vote in the 2028 US presidential election?</td></tr>
+        <tr><td>热门分区文案</td><td>过去 24 小时内最热门的预测盘口</td><td>Most Popular Prediction Markets in the Last 24 Hours</td></tr>
+        <tr><td>最新分区文案</td><td>过去 24 小时内最新的预测盘口</td><td>Latest Prediction Markets in the Last 24 Hours</td></tr>
+      </tbody>
+    </table>
   </div>
 </div>
 
@@ -573,34 +591,29 @@ App({
 <div class="chapter" id="ch7">
   <div class="chapter-header"><h2>第七章 &nbsp;项目文件结构</h2></div>
   <div class="chapter-body">
+    <div class="info-box tip">
+      <div class="info-box-label">当前基线</div>
+      <div class="info-box-val">为进入前端重构阶段，仓库已精简为「原型文件 + TDesign 组件库」。旧前端页面代码与云函数代码已清理。</div>
+    </div>
     <div class="file-tree">
-      <div class="dir">miniprogram/                 <span class="comment"># 小程序前端根目录</span></div>
-      <div class="file">&nbsp;&nbsp;├─ app.js                  <span class="comment"># 全局配置（globalData、语言初始化）</span></div>
-      <div class="file">&nbsp;&nbsp;├─ app.json                <span class="comment"># 全局配置（pages、tabBar 定义）</span></div>
-      <div class="file">&nbsp;&nbsp;├─ app.wxss                <span class="comment"># 全局样式变量</span></div>
-      <div class="dir">&nbsp;&nbsp;├─ i18n/                   <span class="comment"># 多语言文件</span></div>
-      <div class="file">&nbsp;&nbsp;│   ├─ zh-CN.js</div>
-      <div class="file">&nbsp;&nbsp;│   └─ en.js</div>
-      <div class="dir">&nbsp;&nbsp;├─ components/             <span class="comment"># 公共组件</span></div>
-      <div class="file">&nbsp;&nbsp;│   ├─ event-card/         <span class="comment"># Event 卡片组件</span></div>
-      <div class="file">&nbsp;&nbsp;│   ├─ whale-card/         <span class="comment"># 巨鲸卡片组件</span></div>
-      <div class="file">&nbsp;&nbsp;│   ├─ mini-chart/         <span class="comment"># 迷你趋势图（wx-charts封装）</span></div>
-      <div class="file">&nbsp;&nbsp;│   └─ skeleton/           <span class="comment"># 骨架屏组件</span></div>
-      <div class="dir">&nbsp;&nbsp;└─ pages/</div>
-      <div class="file">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ trending/           <span class="comment"># 热点页</span></div>
-      <div class="file">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ breaking/           <span class="comment"># 突发页</span></div>
-      <div class="file">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ new/                <span class="comment"># 最新页</span></div>
-      <div class="file">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ whale/              <span class="comment"># 巨鲸页</span></div>
-      <div class="file">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├─ profile/            <span class="comment"># 个人中心</span></div>
-      <div class="file">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└─ webview/            <span class="comment"># 原文 WebView 页</span></div>
+      <div class="dir">prototype/                   <span class="comment"># 原型基线（HTML）</span></div>
+      <div class="file">&nbsp;&nbsp;├─ index.html              <span class="comment"># 原型总览</span></div>
+      <div class="file">&nbsp;&nbsp;├─ login.html              <span class="comment"># 登录引导页</span></div>
+      <div class="file">&nbsp;&nbsp;├─ trending.html           <span class="comment"># 热点页（多结果卡片）</span></div>
+      <div class="file">&nbsp;&nbsp;├─ breaking.html           <span class="comment"># 突发页</span></div>
+      <div class="file">&nbsp;&nbsp;├─ latest.html             <span class="comment"># 最新页（参考热点排版）</span></div>
+      <div class="file">&nbsp;&nbsp;├─ whales.html             <span class="comment"># 巨鲸页</span></div>
+      <div class="file">&nbsp;&nbsp;├─ profile.html            <span class="comment"># 个人中心</span></div>
+      <div class="file">&nbsp;&nbsp;├─ favorites.html          <span class="comment"># 收藏管理页（左滑删除/拖拽/批量）</span></div>
+      <div class="file">&nbsp;&nbsp;├─ event-detail.html       <span class="comment"># WebView 占位</span></div>
+      <div class="file">&nbsp;&nbsp;├─ common.css              <span class="comment"># 公共样式</span></div>
+      <div class="file">&nbsp;&nbsp;└─ common.js               <span class="comment"># 公共逻辑（语言切换、导航、时钟）</span></div>
       <br>
-      <div class="dir">cloudfunctions/              <span class="comment"># 云函数根目录</span></div>
-      <div class="file">&nbsp;&nbsp;├─ getTrending/            <span class="comment"># 热点数据（含5min缓存）</span></div>
-      <div class="file">&nbsp;&nbsp;├─ getBreaking/            <span class="comment"># 突发数据</span></div>
-      <div class="file">&nbsp;&nbsp;├─ getNew/                 <span class="comment"># 最新数据</span></div>
-      <div class="file">&nbsp;&nbsp;├─ getWhale/               <span class="comment"># 巨鲸交易数据</span></div>
-      <div class="file">&nbsp;&nbsp;├─ getUserInfo/            <span class="comment"># 微信登录</span></div>
-      <div class="file">&nbsp;&nbsp;└─ manageFavorite/         <span class="comment"># 收藏增删查</span></div>
+      <div class="dir">miniprogram/miniprogram_npm/tdesign-miniprogram/</div>
+      <div class="file">&nbsp;&nbsp;└─ ...                     <span class="comment"># TDesign 小程序组件库（保留）</span></div>
+      <br>
+      <div class="dir">doc/                         <span class="comment"># 开发设计文档</span></div>
+      <div class="file">&nbsp;&nbsp;└─ PolyTrend_开发设计文档_v1.0.html</div>
     </div>
   </div>
 </div>
@@ -609,6 +622,10 @@ App({
 <div class="chapter" id="ch8">
   <div class="chapter-header"><h2>第八章 &nbsp;开发计划与上线流程</h2></div>
   <div class="chapter-body">
+    <div class="info-box tip">
+      <div class="info-box-label">重构起点</div>
+      <div class="info-box-val">2026-03-04 起，以 prototype 为唯一视觉和交互基线，前端与云函数按模块重新开发。</div>
+    </div>
     <h3>8.1 六周开发计划</h3>
     <table class="tbl">
       <thead><tr><th>阶段</th><th>时间</th><th>主要任务</th><th>交付物</th></tr></thead>

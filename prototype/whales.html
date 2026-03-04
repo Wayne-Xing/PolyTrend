@@ -7,84 +7,206 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./common.css" />
 </head>
-<body data-tab="whales">
+<body data-tab="whales" data-doc-title-zh="PolyTrend - 巨鲸" data-doc-title-en="PolyTrend - Whales">
   <div class="phone-page app-shell relative">
     <header class="top-bar">
       <div class="top-row">
-        <div class="top-title">PolyTrend - 资讯速递</div>
+        <div class="top-title" data-i18n-zh="PolyTrend - 资讯速递" data-i18n-en="PolyTrend - News Feed">PolyTrend - 资讯速递</div>
         <div class="clock" data-clock></div>
         <button class="lang-switch" data-lang-toggle>简体中文 | EN</button>
       </div>
-      <div class="page-title">🐳 巨鲸 Whales</div>
+      <div class="page-title" data-title-zh="🐳 巨鲸" data-title-en="🐳 Whales">🐳 巨鲸</div>
     </header>
 
     <main class="scroll-area space-y-3">
-      <p class="section-title">24 小时大额交易 Top 10</p>
-
-      <article class="td-card p-3 space-y-3">
-        <div class="flex items-start justify-between gap-3">
-          <div>
-            <div class="whale-amount">$250,000</div>
-            <p class="text-xs text-slate-500 mt-1">交易时间 2026-03-03 13:42</p>
-          </div>
-          <span class="side-tag side-buy">BUY</span>
-        </div>
-        <div class="text-sm font-semibold">美国大选：候选人 A 获胜概率</div>
-        <div class="text-xs text-slate-600">下注选项：Yes @ 0.68</div>
-        <div class="text-xs text-slate-600">交易哈希：0x8F23...A901</div>
-        <div class="card-footer" style="margin-top:0;padding-top:8px;">
-          <span>链上地址：0x12...9f</span>
-          <span class="link-btn">查看区块 →</span>
-          <button class="fav-btn">♡</button>
-        </div>
-      </article>
-
-      <article class="td-card p-3 space-y-3">
-        <div class="flex items-start justify-between gap-3">
-          <div>
-            <div class="whale-amount">$198,000</div>
-            <p class="text-xs text-slate-500 mt-1">交易时间 2026-03-03 09:17</p>
-          </div>
-          <span class="side-tag side-sell">SELL</span>
-        </div>
-        <div class="text-sm font-semibold">原油价格本周突破 $95</div>
-        <div class="text-xs text-slate-600">卖出选项：No @ 0.57</div>
-        <div class="text-xs text-slate-600">交易哈希：0x4D9B...E8C2</div>
-        <div class="card-footer" style="margin-top:0;padding-top:8px;">
-          <span>链上地址：0x7d...c1</span>
-          <span class="link-btn">查看区块 →</span>
-          <button class="fav-btn active">♥</button>
-        </div>
-      </article>
-
-      <article class="td-card p-3 space-y-3">
-        <div class="flex items-start justify-between gap-3">
-          <div>
-            <div class="whale-amount">$172,500</div>
-            <p class="text-xs text-slate-500 mt-1">交易时间 2026-03-03 04:05</p>
-          </div>
-          <span class="side-tag side-buy">BUY</span>
-        </div>
-        <div class="text-sm font-semibold">美联储 6 月会议降息概率</div>
-        <div class="text-xs text-slate-600">下注选项：Yes @ 0.51</div>
-        <div class="text-xs text-slate-600">交易哈希：0xAA10...11B7</div>
-        <div class="card-footer" style="margin-top:0;padding-top:8px;">
-          <span>链上地址：0x3a...e9</span>
-          <span class="link-btn">查看区块 →</span>
-          <button class="fav-btn">♡</button>
-        </div>
-      </article>
+      <p class="section-title" data-i18n-zh="24 小时大额交易 Top 10" data-i18n-en="Top 10 Large Trades in 24h">24 小时大额交易 Top 10</p>
+      <section id="whalesList" class="space-y-3"></section>
     </main>
 
     <nav class="bottom-nav">
-      <button class="tab-item" data-tab-key="trending"><span>🔥</span><span>热点</span></button>
-      <button class="tab-item" data-tab-key="breaking"><span>⚡</span><span>突发</span></button>
-      <button class="tab-item" data-tab-key="latest"><span>🆕</span><span>最新</span></button>
-      <button class="tab-item" data-tab-key="whales"><span>🐳</span><span>巨鲸</span></button>
-      <button class="tab-item" data-tab-key="profile"><span>👤</span><span>我的</span></button>
+      <button class="tab-item" data-tab-key="trending"><span>🔥</span><span data-i18n-zh="热点" data-i18n-en="Trending">热点</span></button>
+      <button class="tab-item" data-tab-key="breaking"><span>⚡</span><span data-i18n-zh="突发" data-i18n-en="Breaking">突发</span></button>
+      <button class="tab-item" data-tab-key="latest"><span>🆕</span><span data-i18n-zh="最新" data-i18n-en="New">最新</span></button>
+      <button class="tab-item" data-tab-key="whales"><span>🐳</span><span data-i18n-zh="巨鲸" data-i18n-en="Whales">巨鲸</span></button>
+      <button class="tab-item" data-tab-key="profile"><span>👤</span><span data-i18n-zh="我的" data-i18n-en="Profile">我的</span></button>
     </nav>
   </div>
 
+  <script>
+    (function () {
+      var whalesList = document.getElementById('whalesList');
+      if (!whalesList) return;
+
+      var state = { trades: [] };
+      var fallbackCovers = [
+        'linear-gradient(135deg,#0f766e,#22c55e)',
+        'linear-gradient(135deg,#7c3aed,#ec4899)',
+        'linear-gradient(135deg,#1d4ed8,#38bdf8)'
+      ];
+
+      var mockData = {
+        markets: [
+          {
+            id: 'whale-1',
+            coverTitle: { zh: '美国大选仓位异动', en: 'US Election Position Shift' },
+            amount: '$250,000',
+            time: { zh: '交易时间 2026-03-03 13:42', en: 'Trade Time 2026-03-03 13:42' },
+            side: 'buy',
+            market: { zh: '美国大选：候选人 A 获胜概率', en: 'US Election: Candidate A Win Probability' },
+            position: { zh: '下注选项：是 @ 0.68', en: 'Position: Yes @ 0.68' },
+            txHash: '0x8F23...A901',
+            address: '0x12...9f',
+            image: 'https://picsum.photos/id/1005/900/500',
+            favorite: false
+          },
+          {
+            id: 'whale-2',
+            coverTitle: { zh: '原油市场大额卖出', en: 'Large Oil Market Sell-off' },
+            amount: '$198,000',
+            time: { zh: '交易时间 2026-03-03 09:17', en: 'Trade Time 2026-03-03 09:17' },
+            side: 'sell',
+            market: { zh: '原油价格本周突破 $95', en: 'Oil Price Breaks $95 This Week' },
+            position: { zh: '卖出选项：否 @ 0.57', en: 'Position: No @ 0.57' },
+            txHash: '0x4D9B...E8C2',
+            address: '0x7d...c1',
+            image: 'https://picsum.photos/id/1036/900/500',
+            favorite: true
+          },
+          {
+            id: 'whale-3',
+            coverTitle: { zh: '利率预期集中买入', en: 'Rate-Cut Expectation Buy' },
+            amount: '$172,500',
+            time: { zh: '交易时间 2026-03-03 04:05', en: 'Trade Time 2026-03-03 04:05' },
+            side: 'buy',
+            market: { zh: '美联储 6 月会议降息概率', en: 'Fed June Rate-Cut Probability' },
+            position: { zh: '下注选项：是 @ 0.51', en: 'Position: Yes @ 0.51' },
+            txHash: '0xAA10...11B7',
+            address: '0x3a...e9',
+            image: '',
+            favorite: false
+          }
+        ]
+      };
+
+      function getLang() {
+        return document.body.dataset.lang === 'en' ? 'en' : 'zh';
+      }
+
+      function pickText(value, lang) {
+        if (value === null || value === undefined) return '';
+        if (typeof value === 'string' || typeof value === 'number') return String(value);
+        if (typeof value === 'object') return value[lang] || value.zh || value.en || '';
+        return '';
+      }
+
+      function escapeHtml(text) {
+        return String(text)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function escapeAttr(text) {
+        return escapeHtml(text).replace(/`/g, '&#96;');
+      }
+
+      function normalizeTrades(payload) {
+        if (!payload) return [];
+        if (Array.isArray(payload)) return payload;
+        if (Array.isArray(payload.markets)) return payload.markets;
+        if (Array.isArray(payload.data)) return payload.data;
+        if (payload.result && Array.isArray(payload.result.list)) return payload.result.list;
+        return [];
+      }
+
+      function getCoverStyle(item, index) {
+        var image = item.image || item.coverImage || item.banner;
+        if (image) {
+          return 'background-image: linear-gradient(135deg, rgba(9,21,43,0.12), rgba(9,21,43,0.62)), url(&quot;' + escapeAttr(image) + '&quot;);';
+        }
+        return 'background: ' + fallbackCovers[index % fallbackCovers.length] + ';';
+      }
+
+      function buildCard(item, index, lang) {
+        var coverTitle = pickText(item.coverTitle || item.title || item.market, lang) || (lang === 'en' ? 'Whale Trade' : '巨鲸交易');
+        var amount = pickText(item.amount, lang) || '$0';
+        var tradeTime = pickText(item.time || item.tradeTime, lang) || (lang === 'en' ? 'Trade Time --' : '交易时间 --');
+        var marketText = pickText(item.market || item.question || item.title, lang) || coverTitle;
+        var positionText = pickText(item.position, lang) || (lang === 'en' ? 'Position: --' : '下注选项：--');
+        var txHash = pickText(item.txHash || item.hash, lang) || '--';
+        var address = pickText(item.address || item.wallet, lang) || '--';
+        var isBuy = (item.side || '').toLowerCase() !== 'sell';
+        var sideClass = isBuy ? 'side-buy' : 'side-sell';
+        var sideText = isBuy ? (lang === 'en' ? 'BUY' : '买入') : (lang === 'en' ? 'SELL' : '卖出');
+        var linkText = lang === 'en' ? 'View Block →' : '查看区块 →';
+        var hashPrefix = lang === 'en' ? 'Tx Hash: ' : '交易哈希：';
+        var addrPrefix = lang === 'en' ? 'On-chain Address: ' : '链上地址：';
+        var favoriteClass = item.favorite || item.isFavorite ? 'fav-btn active' : 'fav-btn';
+        var favorite = item.favorite || item.isFavorite ? '♥' : '♡';
+
+        return (
+          '<article class="td-card whale-market-card">' +
+            '<div class="event-cover image-cover whale-cover" style="' + getCoverStyle(item, index) + '">' +
+              '<span class="cover-pill">' + escapeHtml(coverTitle) + '</span>' +
+            '</div>' +
+            '<div class="card-body p-3 space-y-3">' +
+              '<div class="flex items-start justify-between gap-3">' +
+                '<div><div class="whale-amount">' + escapeHtml(amount) + '</div><p class="text-xs text-slate-500 mt-1">' + escapeHtml(tradeTime) + '</p></div>' +
+                '<span class="side-tag ' + sideClass + '">' + escapeHtml(sideText) + '</span>' +
+              '</div>' +
+              '<div class="text-sm font-semibold">' + escapeHtml(marketText) + '</div>' +
+              '<div class="text-xs text-slate-600">' + escapeHtml(positionText) + '</div>' +
+              '<div class="text-xs text-slate-600">' + escapeHtml(hashPrefix + txHash) + '</div>' +
+              '<div class="card-footer whale-footer">' +
+                '<span>' + escapeHtml(addrPrefix + address) + '</span>' +
+                '<span class="link-btn">' + escapeHtml(linkText) + '</span>' +
+                '<button class="' + favoriteClass + '">' + favorite + '</button>' +
+              '</div>' +
+            '</div>' +
+          '</article>'
+        );
+      }
+
+      function render() {
+        var lang = getLang();
+        whalesList.innerHTML = state.trades.map(function (item, index) {
+          return buildCard(item, index, lang);
+        }).join('');
+      }
+
+      async function loadTrades() {
+        var injected = normalizeTrades(window.__POLYTREND_WHALES_RESPONSE);
+        if (injected.length) {
+          state.trades = injected;
+          render();
+          return;
+        }
+
+        var endpoint = window.__POLYTREND_WHALES_ENDPOINT;
+        if (!endpoint) {
+          state.trades = mockData.markets;
+          render();
+          return;
+        }
+
+        try {
+          var resp = await fetch(endpoint, { method: 'GET', cache: 'no-store' });
+          if (!resp.ok) throw new Error('fetch whales failed');
+          var json = await resp.json();
+          var trades = normalizeTrades(json);
+          state.trades = trades.length ? trades : mockData.markets;
+        } catch (err) {
+          state.trades = mockData.markets;
+        }
+        render();
+      }
+
+      document.addEventListener('polytrend:languagechange', render);
+      window.addEventListener('DOMContentLoaded', loadTrades);
+    })();
+  </script>
   <script src="./common.js"></script>
 </body>
 </html>

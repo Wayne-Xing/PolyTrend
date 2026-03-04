@@ -7,93 +7,371 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./common.css" />
 </head>
-<body data-tab="latest">
+<body data-tab="latest" data-doc-title-zh="PolyTrend - 最新" data-doc-title-en="PolyTrend - New">
   <div class="phone-page app-shell relative">
     <header class="top-bar">
       <div class="top-row">
-        <div class="top-title">PolyTrend - 资讯速递</div>
+        <div class="top-title" data-i18n-zh="PolyTrend - 资讯速递" data-i18n-en="PolyTrend - News Feed">PolyTrend - 资讯速递</div>
         <div class="clock" data-clock></div>
         <button class="lang-switch" data-lang-toggle>简体中文 | EN</button>
       </div>
-      <div class="page-title">🆕 最新 New</div>
+      <div class="page-title" data-title-zh="🆕 最新" data-title-en="🆕 New">🆕 最新</div>
     </header>
 
     <main class="scroll-area space-y-3">
-      <p class="section-title">24 小时新上线市场</p>
-
-      <article class="td-card">
-        <div class="event-cover" style="background:linear-gradient(135deg,#2563eb,#38bdf8)">Space Policy</div>
-        <div class="card-body">
-          <h3 class="card-title">NASA 新预算案会在本月国会投票中通过吗？</h3>
-          <div class="meta-row"><span>🏷️ 航天</span><span>📅 新建于 2 小时前</span><span>💧 $180K</span></div>
-          <div class="chart-row">
-            <div class="mini-chart">
-              <svg viewBox="0 0 120 40" width="100%" height="100%">
-                <polyline points="2,34 20,30 38,33 56,28 74,24 92,20 112,22" fill="none" stroke="#2e7d32" stroke-width="2.5" />
-              </svg>
-            </div>
-            <div class="delta-up">▲ +4.7%</div>
-          </div>
-          <div class="card-footer">
-            <span>📊 成交量：$120,000</span>
-            <span class="link-btn">查看原文 →</span>
-            <button class="fav-btn">♡</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="td-card">
-        <div class="event-cover" style="background:linear-gradient(135deg,#9333ea,#f472b6)">Cinema Awards</div>
-        <div class="card-body">
-          <h3 class="card-title">今年奥斯卡最佳影片是否由流媒体平台作品获得？</h3>
-          <div class="meta-row"><span>🏷️ 娱乐</span><span>📅 新建于 6 小时前</span><span>💧 $90K</span></div>
-          <div class="chart-row">
-            <div class="mini-chart">
-              <svg viewBox="0 0 120 40" width="100%" height="100%">
-                <polyline points="2,12 20,14 38,17 56,22 74,28 92,26 112,31" fill="none" stroke="#c62828" stroke-width="2.5" />
-              </svg>
-            </div>
-            <div class="delta-down">▼ -5.2%</div>
-          </div>
-          <div class="card-footer">
-            <span>📊 成交量：$74,500</span>
-            <span class="link-btn">查看原文 →</span>
-            <button class="fav-btn active">♥</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="td-card">
-        <div class="event-cover" style="background:linear-gradient(135deg,#115e59,#0d9488)">Climate Deal</div>
-        <div class="card-body">
-          <h3 class="card-title">COP 峰会最终协议是否包含新的碳关税框架？</h3>
-          <div class="meta-row"><span>🏷️ 气候</span><span>📅 新建于 11 小时前</span><span>💧 $66K</span></div>
-          <div class="chart-row">
-            <div class="mini-chart">
-              <svg viewBox="0 0 120 40" width="100%" height="100%">
-                <polyline points="2,27 20,24 38,26 56,21 74,19 92,17 112,15" fill="none" stroke="#2e7d32" stroke-width="2.5" />
-              </svg>
-            </div>
-            <div class="delta-up">▲ +3.1%</div>
-          </div>
-          <div class="card-footer">
-            <span>📊 成交量：$48,200</span>
-            <span class="link-btn">查看原文 →</span>
-            <button class="fav-btn">♡</button>
-          </div>
-        </div>
-      </article>
+      <p class="section-title" data-i18n-zh="过去 24 小时内最新的预测盘口" data-i18n-en="Latest Prediction Markets in the Last 24 Hours">过去 24 小时内最新的预测盘口</p>
+      <section class="market-grid" id="latestGrid"></section>
     </main>
 
     <nav class="bottom-nav">
-      <button class="tab-item" data-tab-key="trending"><span>🔥</span><span>热点</span></button>
-      <button class="tab-item" data-tab-key="breaking"><span>⚡</span><span>突发</span></button>
-      <button class="tab-item" data-tab-key="latest"><span>🆕</span><span>最新</span></button>
-      <button class="tab-item" data-tab-key="whales"><span>🐳</span><span>巨鲸</span></button>
-      <button class="tab-item" data-tab-key="profile"><span>👤</span><span>我的</span></button>
+      <button class="tab-item" data-tab-key="trending"><span>🔥</span><span data-i18n-zh="热点" data-i18n-en="Trending">热点</span></button>
+      <button class="tab-item" data-tab-key="breaking"><span>⚡</span><span data-i18n-zh="突发" data-i18n-en="Breaking">突发</span></button>
+      <button class="tab-item" data-tab-key="latest"><span>🆕</span><span data-i18n-zh="最新" data-i18n-en="New">最新</span></button>
+      <button class="tab-item" data-tab-key="whales"><span>🐳</span><span data-i18n-zh="巨鲸" data-i18n-en="Whales">巨鲸</span></button>
+      <button class="tab-item" data-tab-key="profile"><span>👤</span><span data-i18n-zh="我的" data-i18n-en="Profile">我的</span></button>
     </nav>
   </div>
 
+  <script>
+    (function () {
+      var latestGrid = document.getElementById('latestGrid');
+      if (!latestGrid) return;
+
+      var state = { markets: [] };
+      var fallbackCoverPalette = [
+        'linear-gradient(135deg, #2563eb 0%, #38bdf8 100%)',
+        'linear-gradient(135deg, #9333ea 0%, #f472b6 100%)',
+        'linear-gradient(135deg, #115e59 0%, #0d9488 100%)',
+        'linear-gradient(135deg, #0f766e 0%, #22c55e 100%)'
+      ];
+
+      var mockLatestResponse = {
+        markets: [
+          {
+            id: 'lehavre-mayor',
+            badge: '🇫🇷',
+            coverTitle: { zh: '法国市长选举', en: 'French Mayoral Race' },
+            topic: { zh: '法国地方选举', en: 'French Local Election' },
+            deadline: { zh: '3月3日 初始数据', en: 'Mar 3 Initial data' },
+            question: { zh: 'Le Havre 市长选举谁会赢？', en: 'Who will win the Le Havre mayoral election?' },
+            topPercent: 65,
+            topTrend: 'up',
+            volume: { zh: '⚡ 最新 · 每周', en: '⚡ New · Weekly' },
+            image: 'https://picsum.photos/id/1037/900/500',
+            outcomes: [
+              { label: 'Edouard Philippe', percent: 65, tone: 'neutral' },
+              { label: 'Jean-Paul Lecoq', percent: 33, tone: 'neutral' }
+            ],
+            chips: [
+              { label: 'Yes', tone: 'good' },
+              { label: 'No', tone: 'bad' }
+            ],
+            favorite: false
+          },
+          {
+            id: 'netflix-global-show',
+            badge: 'N',
+            coverTitle: { zh: 'Netflix 榜单', en: 'Netflix Rankings' },
+            topic: { zh: '流媒体', en: 'Streaming' },
+            deadline: { zh: '每周', en: 'Weekly' },
+            question: { zh: '本周全球 Netflix 榜首会是谁？', en: 'What will be the top global Netflix show this week?' },
+            topPercent: 87,
+            topTrend: 'up',
+            volume: { zh: '⚡ 最新 · 每天', en: '⚡ New · Daily' },
+            image: 'https://picsum.photos/id/1027/900/500',
+            outcomes: [
+              { label: 'Bridgerton: Season 4', percent: 87, tone: 'neutral' },
+              { label: 'The Dinosaurs', percent: 13, tone: 'neutral' }
+            ],
+            chips: [
+              { label: 'Yes', tone: 'good' },
+              { label: 'No', tone: 'bad' }
+            ],
+            favorite: false
+          },
+          {
+            id: 'faze-tier1',
+            badge: '🎮',
+            coverTitle: { zh: '电竞赛程', en: 'Esports Calendar' },
+            topic: { zh: '电竞', en: 'Esports' },
+            deadline: { zh: '2026 全年', en: 'Full Year 2026' },
+            question: { zh: 'FaZe 会在 2026 赢得 Tier 1 赛事吗？', en: 'Will FaZe win a Tier 1 event in 2026?' },
+            topPercent: 39,
+            topTrend: 'neutral',
+            volume: { zh: '$2.1M 交易量', en: '$2.1M Volume' },
+            image: 'https://picsum.photos/id/1050/900/500',
+            outcomes: [
+              { label: { zh: '会', en: 'Yes' }, percent: 39, tone: 'good' },
+              { label: { zh: '不会', en: 'No' }, percent: 61, tone: 'bad' }
+            ],
+            chips: [
+              { label: { zh: '会', en: 'Yes' }, tone: 'good' },
+              { label: { zh: '不会', en: 'No' }, tone: 'bad' }
+            ],
+            favorite: false
+          },
+          {
+            id: 'oscars-speech',
+            badge: '🏆',
+            coverTitle: { zh: '奥斯卡热词', en: 'Oscars Mentions' },
+            topic: { zh: '娱乐事件', en: 'Entertainment' },
+            deadline: { zh: '3月', en: 'March' },
+            question: { zh: '奥斯卡颁奖礼上会提及什么？', en: 'What will be said during the Oscars?' },
+            topPercent: 91,
+            topTrend: 'up',
+            volume: { zh: '⚡ 最新 · $11K 交易量', en: '⚡ New · $11K Volume' },
+            image: 'https://picsum.photos/id/1067/900/500',
+            outcomes: [
+              { label: { zh: 'Challmet +5 次', en: 'Challmet +5 times' }, percent: 91, tone: 'neutral' },
+              { label: 'Netflix', percent: 88, tone: 'neutral' }
+            ],
+            chips: [
+              { label: 'Yes', tone: 'good' },
+              { label: 'No', tone: 'bad' }
+            ],
+            favorite: false
+          },
+          {
+            id: 'powell-bingo',
+            badge: '🇺🇸',
+            coverTitle: { zh: '美联储事件', en: 'Fed Event' },
+            topic: { zh: 'Powell Bingo', en: 'Powell Bingo' },
+            deadline: { zh: '3月4日', en: 'Mar 4' },
+            question: { zh: 'Powell Bingo: March', en: 'Powell Bingo: March' },
+            topPercent: 57,
+            topTrend: 'up',
+            volume: { zh: '⚡ 最新 · 每周', en: '⚡ New · Weekly' },
+            image: 'https://picsum.photos/id/1025/900/500',
+            outcomes: [
+              { label: 'Yes', percent: 57, tone: 'good' },
+              { label: 'No', percent: 43, tone: 'bad' }
+            ],
+            chips: [
+              { label: 'Yes', tone: 'good' },
+              { label: 'No', tone: 'bad' }
+            ],
+            favorite: false
+          },
+          {
+            id: 'aws-outage',
+            badge: '☁️',
+            coverTitle: { zh: '云服务稳定性', en: 'Cloud Reliability' },
+            topic: { zh: '云服务', en: 'Cloud' },
+            deadline: { zh: '3月31日', en: 'Mar 31' },
+            question: { zh: 'AWS 服务会在 3 月底前中断吗？', en: 'AWS service disrupted by March 31?' },
+            topPercent: 39,
+            topTrend: 'down',
+            volume: { zh: '⚡ 最新 · 每月', en: '⚡ New · Monthly' },
+            image: 'https://picsum.photos/id/1018/900/500',
+            outcomes: [
+              { label: 'Yes', percent: 39, tone: 'good' },
+              { label: 'No', percent: 61, tone: 'bad' }
+            ],
+            chips: [
+              { label: 'Yes', tone: 'good' },
+              { label: 'No', tone: 'bad' }
+            ],
+            favorite: false
+          },
+          {
+            id: 'chatgpt-outage',
+            badge: '🤖',
+            coverTitle: { zh: 'AI 服务状态', en: 'AI Service Status' },
+            topic: { zh: 'AI 服务', en: 'AI Service' },
+            deadline: { zh: '3月15日', en: 'Mar 15' },
+            question: { zh: 'ChatGPT 会在 3 月 15 日前出现全站故障？', en: 'ChatGPT full outage by March 15?' },
+            topPercent: 24,
+            topTrend: 'neutral',
+            volume: { zh: '$4M 交易量', en: '$4M Volume' },
+            image: '',
+            outcomes: [
+              { label: 'Yes', percent: 24, tone: 'good' },
+              { label: 'No', percent: 76, tone: 'bad' }
+            ],
+            chips: [
+              { label: 'Yes', tone: 'good' },
+              { label: 'No', tone: 'bad' }
+            ],
+            favorite: false
+          }
+        ]
+      };
+
+      function getLang() {
+        return document.body.dataset.lang === 'en' ? 'en' : 'zh';
+      }
+
+      function pickText(value, lang) {
+        if (value === null || value === undefined) return '';
+        if (typeof value === 'string' || typeof value === 'number') return String(value);
+        if (typeof value === 'object') return value[lang] || value.zh || value.en || '';
+        return '';
+      }
+
+      function escapeHtml(text) {
+        return String(text)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function escapeAttr(text) {
+        return escapeHtml(text).replace(/`/g, '&#96;');
+      }
+
+      function normalizeMarkets(payload) {
+        if (!payload) return [];
+        if (Array.isArray(payload)) return payload;
+        if (Array.isArray(payload.markets)) return payload.markets;
+        if (Array.isArray(payload.data)) return payload.data;
+        if (payload.result && Array.isArray(payload.result.list)) return payload.result.list;
+        return [];
+      }
+
+      function formatPercent(value) {
+        if (typeof value === 'number' && isFinite(value)) return Math.round(value) + '%';
+        var text = String(value || '').trim();
+        if (!text) return '--';
+        return text.endsWith('%') ? text : (text + '%');
+      }
+
+      function getTrendClass(trend) {
+        if (trend === 'up' || trend === 'down') return trend;
+        return 'neutral';
+      }
+
+      function getToneClass(tone) {
+        if (tone === 'good') return 'good';
+        if (tone === 'bad') return 'bad';
+        return 'neutral';
+      }
+
+      function getGridClass(count) {
+        if (count >= 4) return 'four';
+        if (count === 3) return 'three';
+        return 'two';
+      }
+
+      function getCoverStyle(market, index) {
+        var image = market.image || market.coverImage || market.banner;
+        if (image) {
+          return 'background-image: linear-gradient(135deg, rgba(9,21,43,0.08), rgba(9,21,43,0.55)), url(&quot;' + escapeAttr(image) + '&quot;);';
+        }
+        return 'background: ' + fallbackCoverPalette[index % fallbackCoverPalette.length] + ';';
+      }
+
+      function buildMarketCard(market, index, lang) {
+        var outcomes = Array.isArray(market.outcomes) ? market.outcomes : (Array.isArray(market.options) ? market.options : []);
+        if (!outcomes.length) {
+          outcomes = [{ label: { zh: '等待数据', en: 'Awaiting data' }, percent: '--', tone: 'neutral' }];
+        }
+
+        var chips = Array.isArray(market.chips) && market.chips.length
+          ? market.chips
+          : outcomes.slice(0, 4).map(function (item) {
+              return { label: item.label, tone: item.tone || 'neutral' };
+            });
+        if (!chips.length) {
+          chips = [{ label: { zh: '暂无选项', en: 'No options' }, tone: 'neutral' }];
+        }
+
+        var topPercentSource = market.topPercent !== undefined ? market.topPercent : market.probability;
+        if ((topPercentSource === null || topPercentSource === undefined) && outcomes.length) {
+          topPercentSource = outcomes[0].percent;
+        }
+
+        var coverTitle = pickText(market.coverTitle || market.cover || market.title, lang) || pickText(market.topic || market.category, lang);
+        var topic = pickText(market.topic || market.category, lang);
+        var deadline = pickText(market.deadline || market.endTimeText || market.endTime || market.time, lang);
+        var question = pickText(market.question || market.title, lang);
+        var volume = pickText(market.volume || market.volumeText || market.turnover, lang);
+        var badge = pickText(market.badge || market.emoji, lang) || '🆕';
+        if (!topic) topic = (lang === 'en' ? 'Market' : '市场');
+        if (!deadline) deadline = (lang === 'en' ? 'Live updates' : '实时更新');
+        if (!question) question = topic;
+        if (!volume) volume = (lang === 'en' ? 'Volume --' : '交易量 --');
+
+        var topPercent = formatPercent(topPercentSource);
+        var trendClass = getTrendClass(market.topTrend || market.trend);
+        var isFavorite = !!(market.favorite || market.isFavorite);
+        var favorite = isFavorite ? '♥' : '♡';
+        var favoriteClass = isFavorite ? 'fav-btn active' : 'fav-btn';
+
+        var outcomeRows = outcomes.map(function (item) {
+          return '<div class="outcome-row"><span>' + escapeHtml(pickText(item.label, lang)) + '</span><strong>' + escapeHtml(formatPercent(item.percent)) + '</strong></div>';
+        }).join('');
+
+        var optionGrid = chips.map(function (item) {
+          return '<span class="option-chip ' + getToneClass(item.tone) + '">' + escapeHtml(pickText(item.label, lang)) + '</span>';
+        }).join('');
+
+        return (
+          '<article class="td-card market-card">' +
+            '<div class="event-cover market-cover" style="' + getCoverStyle(market, index) + '">' +
+              '<div class="market-cover-content"><span class="market-cover-title">' + escapeHtml(coverTitle) + '</span></div>' +
+            '</div>' +
+            '<div class="card-body">' +
+              '<div class="market-head">' +
+                '<span class="market-badge">' + escapeHtml(badge) + '</span>' +
+                '<div class="market-head-meta">' +
+                  '<p class="market-topic">' + escapeHtml(topic) + '</p>' +
+                  '<p class="market-time">' + escapeHtml(deadline) + '</p>' +
+                '</div>' +
+                '<span class="market-prob ' + trendClass + '">' + escapeHtml(topPercent) + '</span>' +
+              '</div>' +
+              '<h3 class="market-question">' + escapeHtml(question) + '</h3>' +
+              '<div class="outcome-list">' + outcomeRows + '</div>' +
+              '<div class="option-grid ' + getGridClass(chips.length) + '">' + optionGrid + '</div>' +
+              '<div class="card-footer market-footer">' +
+                '<span>' + escapeHtml(volume) + '</span>' +
+                '<button class="' + favoriteClass + '">' + favorite + '</button>' +
+              '</div>' +
+            '</div>' +
+          '</article>'
+        );
+      }
+
+      function renderMarkets() {
+        var lang = getLang();
+        latestGrid.innerHTML = state.markets.map(function (market, index) {
+          return buildMarketCard(market, index, lang);
+        }).join('');
+      }
+
+      async function loadMarkets() {
+        var injected = normalizeMarkets(window.__POLYTREND_LATEST_RESPONSE);
+        if (injected.length) {
+          state.markets = injected;
+          renderMarkets();
+          return;
+        }
+
+        var endpoint = window.__POLYTREND_LATEST_ENDPOINT;
+        if (!endpoint) {
+          state.markets = mockLatestResponse.markets;
+          renderMarkets();
+          return;
+        }
+
+        try {
+          var resp = await fetch(endpoint, { method: 'GET', cache: 'no-store' });
+          if (!resp.ok) throw new Error('Failed to fetch latest markets');
+          var json = await resp.json();
+          var markets = normalizeMarkets(json);
+          state.markets = markets.length ? markets : mockLatestResponse.markets;
+        } catch (err) {
+          state.markets = mockLatestResponse.markets;
+        }
+
+        renderMarkets();
+      }
+
+      document.addEventListener('polytrend:languagechange', renderMarkets);
+      window.addEventListener('DOMContentLoaded', loadMarkets);
+    })();
+  </script>
   <script src="./common.js"></script>
 </body>
 </html>

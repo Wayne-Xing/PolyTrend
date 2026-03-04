@@ -19,17 +19,71 @@
     });
   }
 
+  function getStoredLang() {
+    try {
+      return localStorage.getItem('polytrend_lang') === 'en' ? 'en' : 'zh';
+    } catch (err) {
+      return 'zh';
+    }
+  }
+
+  function setStoredLang(lang) {
+    try {
+      localStorage.setItem('polytrend_lang', lang);
+    } catch (err) {
+      // Ignore storage errors in file preview mode.
+    }
+  }
+
+  function applyLanguage(lang) {
+    var nextLang = lang === 'en' ? 'en' : 'zh';
+    document.documentElement.lang = nextLang === 'en' ? 'en' : 'zh-CN';
+    document.body.dataset.lang = nextLang;
+    setStoredLang(nextLang);
+
+    document.querySelectorAll('[data-lang-toggle]').forEach(function (btn) {
+      btn.dataset.lang = nextLang;
+      btn.textContent = nextLang === 'en' ? 'English | 简中' : '简体中文 | EN';
+    });
+
+    document.querySelectorAll('[data-i18n-zh][data-i18n-en]').forEach(function (el) {
+      var text = nextLang === 'en' ? el.getAttribute('data-i18n-en') : el.getAttribute('data-i18n-zh');
+      if (text !== null) {
+        el.textContent = text;
+      }
+    });
+
+    document.querySelectorAll('[data-title-zh][data-title-en]').forEach(function (titleEl) {
+      var title = nextLang === 'en'
+        ? titleEl.getAttribute('data-title-en')
+        : titleEl.getAttribute('data-title-zh');
+      if (title) {
+        titleEl.textContent = title;
+      }
+    });
+
+    if (document.body.dataset.docTitleZh && document.body.dataset.docTitleEn) {
+      document.title = nextLang === 'en' ? document.body.dataset.docTitleEn : document.body.dataset.docTitleZh;
+    }
+
+    try {
+      document.dispatchEvent(new CustomEvent('polytrend:languagechange', {
+        detail: { lang: nextLang }
+      }));
+    } catch (err) {
+      var evt = document.createEvent('CustomEvent');
+      evt.initCustomEvent('polytrend:languagechange', false, false, { lang: nextLang });
+      document.dispatchEvent(evt);
+    }
+  }
+
   function bindLangSwitch() {
+    applyLanguage(getStoredLang());
+
     document.querySelectorAll('[data-lang-toggle]').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        var zh = btn.dataset.lang !== 'en';
-        if (zh) {
-          btn.dataset.lang = 'en';
-          btn.textContent = 'English | 简中';
-        } else {
-          btn.dataset.lang = 'zh';
-          btn.textContent = '简体中文 | EN';
-        }
+        var nextLang = btn.dataset.lang === 'en' ? 'zh' : 'en';
+        applyLanguage(nextLang);
       });
     });
   }
@@ -44,8 +98,31 @@
     });
   }
 
+  function bindTabNavigation() {
+    var tabRoutes = {
+      trending: 'trending.html',
+      breaking: 'breaking.html',
+      latest: 'latest.html',
+      whales: 'whales.html',
+      profile: 'profile.html'
+    };
+
+    document.querySelectorAll('[data-tab-key]').forEach(function (item) {
+      item.addEventListener('click', function () {
+        var key = item.getAttribute('data-tab-key');
+        var target = tabRoutes[key];
+        if (!target) return;
+        if (window.location.pathname.endsWith('/' + target) || window.location.pathname.endsWith('\\' + target)) {
+          return;
+        }
+        window.location.href = './' + target;
+      });
+    });
+  }
+
   updateClock();
   bindLangSwitch();
   markActiveTab();
+  bindTabNavigation();
   setInterval(updateClock, 1000);
 })();

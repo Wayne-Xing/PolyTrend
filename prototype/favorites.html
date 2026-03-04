@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PolyTrend - 收藏管理</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./common.css" />
+</head>
+<body data-doc-title-zh="PolyTrend - 收藏管理" data-doc-title-en="PolyTrend - Favorites">
+  <div class="phone-page app-shell relative">
+    <header class="top-bar">
+      <div class="top-row">
+        <a class="back-btn" href="./profile.html" data-i18n-zh="← 返回" data-i18n-en="← Back">← 返回</a>
+        <div class="top-title" data-i18n-zh="PolyTrend - 收藏管理" data-i18n-en="PolyTrend - Favorites">PolyTrend - 收藏管理</div>
+        <div class="clock" data-clock></div>
+        <button class="lang-switch" data-lang-toggle>简体中文 | EN</button>
+      </div>
+      <div class="page-title" data-title-zh="⭐ 我的收藏" data-title-en="⭐ My Favorites">⭐ 我的收藏</div>
+    </header>
+
+    <main class="scroll-area space-y-3">
+      <p class="section-title" data-i18n-zh="全部收藏" data-i18n-en="All Favorites">全部收藏</p>
+
+      <section class="td-card favorite-toolbar">
+        <div class="fav-select-row">
+          <button id="toggleSelectModeBtn" class="fav-toggle-btn" type="button"></button>
+          <button id="doneSelectBtn" class="fav-done-btn" type="button" hidden></button>
+          <div class="fav-count" id="favCountText"></div>
+          <button id="deleteSelectedBtn" class="fav-batch-btn" type="button"></button>
+        </div>
+        <div class="fav-filter-row" id="favFilterRow"></div>
+        <div class="fav-search-row">
+          <input id="favSearchInput" class="fav-search" type="text" autocomplete="off" />
+        </div>
+      </section>
+
+      <section id="favoritesList" class="favorite-list space-y-2"></section>
+    </main>
+  </div>
+
+  <script src="./common.js"></script>
+  <script>
+    (function () {
+      var SWIPE_LIMIT = 82;
+      var SWIPE_OPEN_THRESHOLD = 42;
+
+      var listEl = document.getElementById('favoritesList');
+      var filterRowEl = document.getElementById('favFilterRow');
+      var searchInputEl = document.getElementById('favSearchInput');
+      var toggleSelectModeBtn = document.getElementById('toggleSelectModeBtn');
+      var doneSelectBtn = document.getElementById('doneSelectBtn');
+      var deleteBtnEl = document.getElementById('deleteSelectedBtn');
+      var countTextEl = document.getElementById('favCountText');
+      if (!listEl || !filterRowEl || !searchInputEl || !toggleSelectModeBtn || !doneSelectBtn || !deleteBtnEl || !countTextEl) return;
+
+      var filterDefs = [
+        { key: 'all', label: { zh: '全部', en: 'All' } },
+        { key: 'election', label: { zh: '选举', en: 'Election' } },
+        { key: 'policy', label: { zh: '政策', en: 'Policy' } },
+        { key: 'cloud', label: { zh: '云服务', en: 'Cloud' } },
+        { key: 'sports', label: { zh: '体育', en: 'Sports' } }
+      ];
+
+      var state = {
+        filter: 'all',
+        query: '',
+        selectionMode: false,
+        selected: {},
+        openSwipeId: null,
+        dragArmedId: null,
+        dragId: null,
+        items: [
+          {
+            id: 'f1',
+            category: 'election',
+            title: {
+              zh: '美国 2028 总统大选中，民主党候选人是否将赢得普选？',
+              en: 'Will the Democratic candidate win the popular vote in the 2028 US presidential election?'
+            },
+            subtitle: { zh: '收藏于 2026-03-02 22:15', en: 'Favorited on 2026-03-02 22:15' },
+            meta: { zh: '最新概率：Yes 72%', en: 'Latest odds: Yes 72%' },
+            image: 'https://picsum.photos/id/1024/420/260'
+          },
+          {
+            id: 'f2',
+            category: 'policy',
+            title: {
+              zh: '欧盟 AI 监管法案是否在本季度前正式生效？',
+              en: 'Will the EU AI regulation take effect before the end of this quarter?'
+            },
+            subtitle: { zh: '收藏于 2026-03-01 11:03', en: 'Favorited on 2026-03-01 11:03' },
+            meta: { zh: '最新概率：Yes 48%', en: 'Latest odds: Yes 48%' },
+            image: 'https://picsum.photos/id/1039/420/260'
+          },
+          {
+            id: 'f3',
+            category: 'cloud',
+            title: { zh: 'AWS 服务会在 3 月底前中断吗？', en: 'Will AWS service be disrupted by March 31?' },
+            subtitle: { zh: '收藏于 2026-02-28 19:40', en: 'Favorited on 2026-02-28 19:40' },
+            meta: { zh: '最新概率：Yes 39%', en: 'Latest odds: Yes 39%' },
+            image: 'https://picsum.photos/id/1018/420/260'
+          },
+          {
+            id: 'f4',
+            category: 'sports',
+            title: { zh: '湖人 vs 鹈鹕谁将获胜？', en: 'Who will win: Lakers vs Pelicans?' },
+            subtitle: { zh: '收藏于 2026-02-26 09:10', en: 'Favorited on 2026-02-26 09:10' },
+            meta: { zh: '最新概率：Lakers 65%', en: 'Latest odds: Lakers 65%' },
+            image: 'https://picsum.photos/id/1015/420/260'
+          },
+          {
+            id: 'f5',
+            category: 'election',
+            title: { zh: '得州州长共和党初选谁会获胜？', en: 'Who will win the Texas GOP primary for governor?' },
+            subtitle: { zh: '收藏于 2026-02-25 14:31', en: 'Favorited on 2026-02-25 14:31' },
+            meta: { zh: '最新概率：阿博特 57%', en: 'Latest odds: Abbott 57%' },
+            image: 'https://picsum.photos/id/1068/420/260'
+          }
+        ]
+      };
+
+      var swipeCtx = null;
+
+      function getLang() {
+        return document.body.dataset.lang === 'en' ? 'en' : 'zh';
+      }
+
+      function pickText(val, lang) {
+        if (val === null || val === undefined) return '';
+        if (typeof val === 'object') return val[lang] || val.zh || val.en || '';
+        return String(val);
+      }
+
+      function escapeHtml(text) {
+        return String(text)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function escapeAttr(text) {
+        return escapeHtml(text).replace(/`/g, '&#96;');
+      }
+
+      function getFilteredItems() {
+        var q = state.query.trim().toLowerCase();
+        var lang = getLang();
+        return state.items.filter(function (item) {
+          if (state.filter !== 'all' && item.category !== state.filter) return false;
+          if (!q) return true;
+          var title = pickText(item.title, lang).toLowerCase();
+          var titleZh = pickText(item.title, 'zh').toLowerCase();
+          var titleEn = pickText(item.title, 'en').toLowerCase();
+          return title.indexOf(q) > -1 || titleZh.indexOf(q) > -1 || titleEn.indexOf(q) > -1;
+        });
+      }
+
+      function getSelectedCount() {
+        return Object.keys(state.selected).filter(function (id) { return state.selected[id]; }).length;
+      }
+
+      function isAllVisibleSelected(items) {
+        return items.length > 0 && items.every(function (item) { return !!state.selected[item.id]; });
+      }
+
+      function selectAllVisible(items, checked) {
+        items.forEach(function (item) {
+          state.selected[item.id] = checked;
+        });
+      }
+
+      function reorderItems(sourceId, targetId) {
+        if (!sourceId || !targetId || sourceId === targetId) return;
+        var sourceIndex = -1;
+        var targetIndex = -1;
+        state.items.forEach(function (item, index) {
+          if (item.id === sourceId) sourceIndex = index;
+          if (item.id === targetId) targetIndex = index;
+        });
+        if (sourceIndex < 0 || targetIndex < 0) return;
+        var moved = state.items.splice(sourceIndex, 1)[0];
+        state.items.splice(targetIndex, 0, moved);
+      }
+
+      function removeItemById(itemId) {
+        state.items = state.items.filter(function (item) { return item.id !== itemId; });
+        delete state.selected[itemId];
+        if (state.openSwipeId === itemId) state.openSwipeId = null;
+      }
+
+      function renderFilterChips() {
+        var lang = getLang();
+        filterRowEl.innerHTML = filterDefs.map(function (item) {
+          var active = item.key === state.filter ? ' active' : '';
+          return '<button type="button" class="fav-filter-chip' + active + '" data-filter="' + item.key + '">' +
+            escapeHtml(pickText(item.label, lang)) +
+          '</button>';
+        }).join('');
+      }
+
+      function renderToolbar() {
+        var lang = getLang();
+        var visibleItems = getFilteredItems();
+        var selectedCount = getSelectedCount();
+        var allVisibleSelected = isAllVisibleSelected(visibleItems);
+
+        if (state.selectionMode) {
+          toggleSelectModeBtn.textContent = allVisibleSelected
+            ? (lang === 'en' ? 'Unselect All' : '取消全选')
+            : (lang === 'en' ? 'Select All' : '全选');
+          doneSelectBtn.hidden = false;
+          doneSelectBtn.textContent = lang === 'en' ? 'Done' : '完成';
+          deleteBtnEl.style.display = 'inline-flex';
+          deleteBtnEl.disabled = selectedCount === 0;
+          deleteBtnEl.textContent = lang === 'en'
+            ? ('Delete Selected (' + selectedCount + ')')
+            : ('删除已选（' + selectedCount + '）');
+          countTextEl.textContent = lang === 'en'
+            ? ('Selected ' + selectedCount + ' / Total ' + state.items.length)
+            : ('已选 ' + selectedCount + ' / 共 ' + state.items.length + ' 条');
+        } else {
+          toggleSelectModeBtn.textContent = lang === 'en' ? 'Select All' : '全选';
+          doneSelectBtn.hidden = true;
+          deleteBtnEl.style.display = 'none';
+          countTextEl.textContent = lang === 'en'
+            ? ('Total ' + state.items.length)
+            : ('共 ' + state.items.length + ' 条');
+        }
+
+        searchInputEl.placeholder = lang === 'en' ? 'Search favorites...' : '搜索收藏内容...';
+      }
+
+      function renderList() {
+        var lang = getLang();
+        var items = getFilteredItems();
+        listEl.classList.toggle('select-mode', state.selectionMode);
+
+        if (!items.length) {
+          listEl.innerHTML = '<div class="td-card fav-empty">' +
+            (lang === 'en' ? 'No favorites match this filter.' : '当前筛选下暂无收藏。') +
+          '</div>';
+          return;
+        }
+
+        listEl.innerHTML = items.map(function (item) {
+          var checked = !!state.selected[item.id];
+          var checkedClass = checked ? ' selected' : '';
+          var openClass = state.openSwipeId === item.id ? ' open' : '';
+          var categoryLabel = filterDefs.filter(function (d) { return d.key === item.category; })[0];
+          var categoryText = categoryLabel ? pickText(categoryLabel.label, lang) : '';
+          var deleteText = lang === 'en' ? 'Delete' : '删除';
+
+          return (
+            '<article class="fav-swipe-item' + openClass + '" data-id="' + item.id + '" draggable="true">' +
+              '<button class="fav-swipe-delete" type="button" data-delete-id="' + item.id + '">' + deleteText + '</button>' +
+              '<div class="fav-swipe-track">' +
+                '<div class="td-card fav-mini-card' + checkedClass + '">' +
+                  '<label class="fav-item-check-wrap">' +
+                    '<input type="checkbox" class="fav-item-check" data-id="' + item.id + '"' + (checked ? ' checked' : '') + ' />' +
+                  '</label>' +
+                  '<div class="fav-mini-thumb" style="background-image:linear-gradient(135deg, rgba(9,21,43,0.14), rgba(9,21,43,0.56)), url(&quot;' + escapeAttr(item.image) + '&quot;);"></div>' +
+                  '<div class="fav-mini-body">' +
+                    '<h3 class="fav-mini-title">' + escapeHtml(pickText(item.title, lang)) + '</h3>' +
+                    '<p class="fav-mini-sub">' + escapeHtml(pickText(item.subtitle, lang)) + '</p>' +
+                    '<div class="fav-mini-meta">' +
+                      '<span>' + (lang === 'en' ? 'Category: ' : '分类：') + escapeHtml(categoryText) + '</span>' +
+                      '<span>' + escapeHtml(pickText(item.meta, lang)) + '</span>' +
+                    '</div>' +
+                  '</div>' +
+                  '<button class="fav-drag-handle" type="button" data-drag-handle data-id="' + item.id + '">' +
+                    '<span class="fav-drag-icon">⋮⋮</span>' +
+                  '</button>' +
+                '</div>' +
+              '</div>' +
+            '</article>'
+          );
+        }).join('');
+      }
+
+      function render() {
+        renderFilterChips();
+        renderToolbar();
+        renderList();
+      }
+
+      function startSwipe(itemId, startX, startY, track) {
+        swipeCtx = {
+          id: itemId,
+          startX: startX,
+          startY: startY,
+          baseOffset: state.openSwipeId === itemId ? -SWIPE_LIMIT : 0,
+          currentOffset: state.openSwipeId === itemId ? -SWIPE_LIMIT : 0,
+          swiping: false,
+          track: track
+        };
+      }
+
+      function updateSwipe(clientX, clientY, preventDefaultFn) {
+        if (!swipeCtx) return;
+        var deltaX = clientX - swipeCtx.startX;
+        var deltaY = clientY - swipeCtx.startY;
+        if (!swipeCtx.swiping) {
+          if (Math.abs(deltaX) < 8 || Math.abs(deltaX) <= Math.abs(deltaY)) return;
+          swipeCtx.swiping = true;
+        }
+        if (typeof preventDefaultFn === 'function') preventDefaultFn();
+        var nextOffset = swipeCtx.baseOffset + deltaX;
+        if (nextOffset > 0) nextOffset = 0;
+        if (nextOffset < -SWIPE_LIMIT) nextOffset = -SWIPE_LIMIT;
+        swipeCtx.currentOffset = nextOffset;
+        swipeCtx.track.style.transform = 'translateX(' + nextOffset + 'px)';
+      }
+
+      filterRowEl.addEventListener('click', function (event) {
+        var btn = event.target.closest('[data-filter]');
+        if (!btn) return;
+        state.filter = btn.getAttribute('data-filter') || 'all';
+        state.openSwipeId = null;
+        render();
+      });
+
+      searchInputEl.addEventListener('input', function () {
+        state.query = searchInputEl.value || '';
+        state.openSwipeId = null;
+        render();
+      });
+
+      toggleSelectModeBtn.addEventListener('click', function () {
+        var visibleItems = getFilteredItems();
+        if (!state.selectionMode) {
+          state.selectionMode = true;
+          selectAllVisible(visibleItems, true);
+          state.openSwipeId = null;
+          render();
+          return;
+        }
+
+        var allSelected = isAllVisibleSelected(visibleItems);
+        selectAllVisible(visibleItems, !allSelected);
+        render();
+      });
+
+      doneSelectBtn.addEventListener('click', function () {
+        state.selectionMode = false;
+        state.selected = {};
+        render();
+      });
+
+      deleteBtnEl.addEventListener('click', function () {
+        var selectedIds = Object.keys(state.selected).filter(function (id) { return state.selected[id]; });
+        if (!selectedIds.length) return;
+        var lang = getLang();
+        var ok = window.confirm(lang === 'en'
+          ? ('Delete ' + selectedIds.length + ' selected favorites?')
+          : ('确认删除已选的 ' + selectedIds.length + ' 条收藏吗？'));
+        if (!ok) return;
+        state.items = state.items.filter(function (item) { return !state.selected[item.id]; });
+        state.selected = {};
+        state.openSwipeId = null;
+        render();
+      });
+
+      listEl.addEventListener('change', function (event) {
+        var checkbox = event.target.closest('.fav-item-check');
+        if (!checkbox) return;
+        var id = checkbox.getAttribute('data-id');
+        if (!id) return;
+        state.selected[id] = checkbox.checked;
+        render();
+      });
+
+      listEl.addEventListener('click', function (event) {
+        var deleteBtn = event.target.closest('[data-delete-id]');
+        if (deleteBtn) {
+          var id = deleteBtn.getAttribute('data-delete-id');
+          if (!id) return;
+          removeItemById(id);
+          render();
+          return;
+        }
+
+        if (state.openSwipeId) {
+          var currentItem = event.target.closest('.fav-swipe-item');
+          if (!currentItem || currentItem.getAttribute('data-id') !== state.openSwipeId) {
+            state.openSwipeId = null;
+            render();
+          }
+        }
+      });
+
+      listEl.addEventListener('touchstart', function (event) {
+        var track = event.target.closest('.fav-swipe-track');
+        if (!track) return;
+        var dragHandle = event.target.closest('.fav-drag-handle');
+        if (dragHandle) {
+          state.dragArmedId = dragHandle.getAttribute('data-id');
+          return;
+        }
+        if (event.target.closest('.fav-item-check-wrap')) return;
+
+        var itemEl = track.closest('.fav-swipe-item');
+        if (!itemEl) return;
+        var itemId = itemEl.getAttribute('data-id');
+        if (!itemId) return;
+
+        var touch = event.touches[0];
+        startSwipe(itemId, touch.clientX, touch.clientY, track);
+      }, { passive: true });
+
+      listEl.addEventListener('touchmove', function (event) {
+        if (!swipeCtx) return;
+        var touch = event.touches[0];
+        updateSwipe(touch.clientX, touch.clientY, function () { event.preventDefault(); });
+      }, { passive: false });
+
+      function finishSwipe() {
+        if (!swipeCtx) return;
+        if (swipeCtx.swiping) {
+          state.openSwipeId = swipeCtx.currentOffset <= -SWIPE_OPEN_THRESHOLD ? swipeCtx.id : null;
+          render();
+        }
+        swipeCtx = null;
+      }
+
+      listEl.addEventListener('touchend', finishSwipe, { passive: true });
+      listEl.addEventListener('touchcancel', finishSwipe, { passive: true });
+
+      listEl.addEventListener('mousedown', function (event) {
+        var dragHandle = event.target.closest('.fav-drag-handle');
+        if (dragHandle) {
+          state.dragArmedId = dragHandle.getAttribute('data-id');
+          return;
+        }
+        var track = event.target.closest('.fav-swipe-track');
+        if (!track || event.target.closest('.fav-item-check-wrap')) return;
+        var itemEl = track.closest('.fav-swipe-item');
+        if (!itemEl) return;
+        var itemId = itemEl.getAttribute('data-id');
+        if (!itemId) return;
+        startSwipe(itemId, event.clientX, event.clientY, track);
+      });
+
+      window.addEventListener('mousemove', function (event) {
+        if (!swipeCtx) return;
+        updateSwipe(event.clientX, event.clientY, function () { event.preventDefault(); });
+      });
+
+      window.addEventListener('mouseup', function () {
+        finishSwipe();
+        state.dragArmedId = null;
+      });
+
+      listEl.addEventListener('dragstart', function (event) {
+        var itemEl = event.target.closest('.fav-swipe-item');
+        if (!itemEl) {
+          event.preventDefault();
+          return;
+        }
+        var itemId = itemEl.getAttribute('data-id');
+        if (!itemId || state.dragArmedId !== itemId) {
+          event.preventDefault();
+          return;
+        }
+        state.dragArmedId = null;
+        state.dragId = itemId;
+        itemEl.classList.add('dragging');
+        state.openSwipeId = null;
+        if (event.dataTransfer) {
+          event.dataTransfer.effectAllowed = 'move';
+          event.dataTransfer.setData('text/plain', itemId);
+        }
+      });
+
+      listEl.addEventListener('dragover', function (event) {
+        if (!state.dragId) return;
+        var overEl = event.target.closest('.fav-swipe-item');
+        if (!overEl) return;
+        event.preventDefault();
+        listEl.querySelectorAll('.fav-swipe-item.drag-over').forEach(function (el) {
+          el.classList.remove('drag-over');
+        });
+        if (overEl.getAttribute('data-id') !== state.dragId) {
+          overEl.classList.add('drag-over');
+        }
+      });
+
+      listEl.addEventListener('drop', function (event) {
+        if (!state.dragId) return;
+        var targetEl = event.target.closest('.fav-swipe-item');
+        if (!targetEl) return;
+        event.preventDefault();
+        var targetId = targetEl.getAttribute('data-id');
+        reorderItems(state.dragId, targetId);
+        state.dragId = null;
+        state.dragArmedId = null;
+        render();
+      });
+
+      listEl.addEventListener('dragend', function () {
+        state.dragId = null;
+        state.dragArmedId = null;
+        listEl.querySelectorAll('.fav-swipe-item.dragging,.fav-swipe-item.drag-over').forEach(function (el) {
+          el.classList.remove('dragging', 'drag-over');
+        });
+      });
+
+      document.addEventListener('polytrend:languagechange', function () {
+        render();
+      });
+
+      render();
+    })();
+  </script>
+</body>
+</html>

@@ -7,93 +7,214 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./common.css" />
 </head>
-<body data-tab="breaking">
+<body data-tab="breaking" data-doc-title-zh="PolyTrend - 突发" data-doc-title-en="PolyTrend - Breaking">
   <div class="phone-page app-shell relative">
     <header class="top-bar">
       <div class="top-row">
-        <div class="top-title">PolyTrend - 资讯速递</div>
+        <div class="top-title" data-i18n-zh="PolyTrend - 资讯速递" data-i18n-en="PolyTrend - News Feed">PolyTrend - 资讯速递</div>
         <div class="clock" data-clock></div>
         <button class="lang-switch" data-lang-toggle>简体中文 | EN</button>
       </div>
-      <div class="page-title">⚡ 突发 Breaking</div>
+      <div class="page-title" data-title-zh="⚡ 突发" data-title-en="⚡ Breaking">⚡ 突发</div>
     </header>
 
     <main class="scroll-area space-y-3">
-      <p class="section-title">24 小时波动最大盘口</p>
-
-      <article class="td-card">
-        <div class="event-cover" style="background:linear-gradient(135deg,#0f766e,#14b8a6)">Oil Price Spike</div>
-        <div class="card-body">
-          <h3 class="card-title">布伦特原油本周是否突破 $95？</h3>
-          <div class="meta-row"><span>🏷️ 大宗商品</span><span>📅 截止 2026-03-08</span></div>
-          <div class="chart-row">
-            <div class="mini-chart">
-              <svg viewBox="0 0 120 40" width="100%" height="100%">
-                <polyline points="2,30 20,28 38,21 56,25 74,16 92,10 112,6" fill="none" stroke="#2e7d32" stroke-width="2.5" />
-              </svg>
-            </div>
-            <div class="delta-up">▲ +12.3%</div>
-          </div>
-          <div class="card-footer">
-            <span>📊 成交量：$820,000</span>
-            <span class="link-btn">查看原文 →</span>
-            <button class="fav-btn">♡</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="td-card">
-        <div class="event-cover" style="background:linear-gradient(135deg,#1d4ed8,#7c3aed)">Tech Policy</div>
-        <div class="card-body">
-          <h3 class="card-title">欧盟 AI 监管法案是否在本季度前正式生效？</h3>
-          <div class="meta-row"><span>🏷️ 政策</span><span>📅 截止 2026-06-30</span></div>
-          <div class="chart-row">
-            <div class="mini-chart">
-              <svg viewBox="0 0 120 40" width="100%" height="100%">
-                <polyline points="2,8 20,10 38,13 56,16 74,22 92,28 112,34" fill="none" stroke="#c62828" stroke-width="2.5" />
-              </svg>
-            </div>
-            <div class="delta-down">▼ -9.1%</div>
-          </div>
-          <div class="card-footer">
-            <span>📊 成交量：$560,000</span>
-            <span class="link-btn">查看原文 →</span>
-            <button class="fav-btn active">♥</button>
-          </div>
-        </div>
-      </article>
-
-      <article class="td-card">
-        <div class="event-cover" style="background:linear-gradient(135deg,#b45309,#f97316)">Election Poll</div>
-        <div class="card-body">
-          <h3 class="card-title">英国大选民调中，执政党支持率本周是否反超？</h3>
-          <div class="meta-row"><span>🏷️ 选举</span><span>📅 截止 2026-03-12</span></div>
-          <div class="chart-row">
-            <div class="mini-chart">
-              <svg viewBox="0 0 120 40" width="100%" height="100%">
-                <polyline points="2,31 20,30 38,26 56,28 74,24 92,22 112,14" fill="none" stroke="#2e7d32" stroke-width="2.5" />
-              </svg>
-            </div>
-            <div class="delta-up">▲ +6.8%</div>
-          </div>
-          <div class="card-footer">
-            <span>📊 成交量：$490,000</span>
-            <span class="link-btn">查看原文 →</span>
-            <button class="fav-btn">♡</button>
-          </div>
-        </div>
-      </article>
+      <p class="section-title" data-i18n-zh="24 小时波动最大盘口" data-i18n-en="Largest 24h Market Swings">24 小时波动最大盘口</p>
+      <section id="breakingList" class="space-y-3"></section>
     </main>
 
     <nav class="bottom-nav">
-      <button class="tab-item" data-tab-key="trending"><span>🔥</span><span>热点</span></button>
-      <button class="tab-item" data-tab-key="breaking"><span>⚡</span><span>突发</span></button>
-      <button class="tab-item" data-tab-key="latest"><span>🆕</span><span>最新</span></button>
-      <button class="tab-item" data-tab-key="whales"><span>🐳</span><span>巨鲸</span></button>
-      <button class="tab-item" data-tab-key="profile"><span>👤</span><span>我的</span></button>
+      <button class="tab-item" data-tab-key="trending"><span>🔥</span><span data-i18n-zh="热点" data-i18n-en="Trending">热点</span></button>
+      <button class="tab-item" data-tab-key="breaking"><span>⚡</span><span data-i18n-zh="突发" data-i18n-en="Breaking">突发</span></button>
+      <button class="tab-item" data-tab-key="latest"><span>🆕</span><span data-i18n-zh="最新" data-i18n-en="New">最新</span></button>
+      <button class="tab-item" data-tab-key="whales"><span>🐳</span><span data-i18n-zh="巨鲸" data-i18n-en="Whales">巨鲸</span></button>
+      <button class="tab-item" data-tab-key="profile"><span>👤</span><span data-i18n-zh="我的" data-i18n-en="Profile">我的</span></button>
     </nav>
   </div>
 
+  <script>
+    (function () {
+      var breakingList = document.getElementById('breakingList');
+      if (!breakingList) return;
+
+      var state = { markets: [] };
+      var fallbackCovers = [
+        'linear-gradient(135deg,#0f766e,#14b8a6)',
+        'linear-gradient(135deg,#1d4ed8,#7c3aed)',
+        'linear-gradient(135deg,#b45309,#f97316)'
+      ];
+
+      var mockData = {
+        markets: [
+          {
+            id: 'oil-spike',
+            coverTitle: { zh: '油价飙升', en: 'Oil Price Spike' },
+            question: { zh: '布伦特原油本周是否突破 $95？', en: 'Will Brent crude break above $95 this week?' },
+            category: { zh: '🏷️ 大宗商品', en: '🏷️ Commodities' },
+            deadline: { zh: '📅 截止 2026-03-08', en: '📅 Ends 2026-03-08' },
+            deltaText: { zh: '▲ +12.3%', en: '▲ +12.3%' },
+            deltaDirection: 'up',
+            volume: { zh: '📊 成交量：$820,000', en: '📊 Volume: $820,000' },
+            image: 'https://picsum.photos/id/1021/900/500',
+            sparkline: [30, 28, 21, 25, 16, 10, 6],
+            favorite: false
+          },
+          {
+            id: 'tech-policy',
+            coverTitle: { zh: '科技政策', en: 'Tech Policy' },
+            question: { zh: '欧盟 AI 监管法案是否在本季度前正式生效？', en: 'Will the EU AI regulation take effect before the end of this quarter?' },
+            category: { zh: '🏷️ 政策', en: '🏷️ Policy' },
+            deadline: { zh: '📅 截止 2026-06-30', en: '📅 Ends 2026-06-30' },
+            deltaText: { zh: '▼ -9.1%', en: '▼ -9.1%' },
+            deltaDirection: 'down',
+            volume: { zh: '📊 成交量：$560,000', en: '📊 Volume: $560,000' },
+            image: 'https://picsum.photos/id/1039/900/500',
+            sparkline: [8, 10, 13, 16, 22, 28, 34],
+            favorite: true
+          },
+          {
+            id: 'election-poll',
+            coverTitle: { zh: '选举民调', en: 'Election Poll' },
+            question: { zh: '英国大选民调中，执政党支持率本周是否反超？', en: 'Will the ruling party retake the lead in UK election polls this week?' },
+            category: { zh: '🏷️ 选举', en: '🏷️ Election' },
+            deadline: { zh: '📅 截止 2026-03-12', en: '📅 Ends 2026-03-12' },
+            deltaText: { zh: '▲ +6.8%', en: '▲ +6.8%' },
+            deltaDirection: 'up',
+            volume: { zh: '📊 成交量：$490,000', en: '📊 Volume: $490,000' },
+            image: '',
+            sparkline: [31, 30, 26, 28, 24, 22, 14],
+            favorite: false
+          }
+        ]
+      };
+
+      function getLang() {
+        return document.body.dataset.lang === 'en' ? 'en' : 'zh';
+      }
+
+      function pickText(value, lang) {
+        if (value === null || value === undefined) return '';
+        if (typeof value === 'string' || typeof value === 'number') return String(value);
+        if (typeof value === 'object') return value[lang] || value.zh || value.en || '';
+        return '';
+      }
+
+      function escapeHtml(text) {
+        return String(text)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;')
+          .replace(/'/g, '&#39;');
+      }
+
+      function escapeAttr(text) {
+        return escapeHtml(text).replace(/`/g, '&#96;');
+      }
+
+      function normalizeMarkets(payload) {
+        if (!payload) return [];
+        if (Array.isArray(payload)) return payload;
+        if (Array.isArray(payload.markets)) return payload.markets;
+        if (Array.isArray(payload.data)) return payload.data;
+        if (payload.result && Array.isArray(payload.result.list)) return payload.result.list;
+        return [];
+      }
+
+      function normalizeSparkline(points) {
+        if (!Array.isArray(points) || !points.length) return '2,30 20,28 38,21 56,25 74,16 92,10 112,6';
+        var min = Math.min.apply(null, points);
+        var max = Math.max.apply(null, points);
+        var span = (max - min) || 1;
+        return points.map(function (value, idx) {
+          var x = 2 + (110 * idx / Math.max(points.length - 1, 1));
+          var y = 34 - ((value - min) / span) * 26;
+          return Math.round(x) + ',' + Math.round(y);
+        }).join(' ');
+      }
+
+      function getCoverStyle(item, index) {
+        var image = item.image || item.coverImage || item.banner;
+        if (image) {
+          return 'background-image: linear-gradient(135deg, rgba(9,21,43,0.10), rgba(9,21,43,0.58)), url(&quot;' + escapeAttr(image) + '&quot;);';
+        }
+        return 'background: ' + fallbackCovers[index % fallbackCovers.length] + ';';
+      }
+
+      function buildCard(item, index, lang) {
+        var coverTitle = pickText(item.coverTitle || item.topic || item.title, lang) || (lang === 'en' ? 'Breaking' : '突发');
+        var question = pickText(item.question || item.title, lang) || coverTitle;
+        var category = pickText(item.category, lang) || (lang === 'en' ? '🏷️ Market' : '🏷️ 市场');
+        var deadline = pickText(item.deadline || item.endTimeText || item.endTime, lang) || (lang === 'en' ? '📅 Live updates' : '📅 实时更新');
+        var deltaText = pickText(item.deltaText || item.delta, lang) || '--';
+        var deltaClass = (item.deltaDirection === 'down' || /^▼|-/.test(deltaText)) ? 'delta-down' : 'delta-up';
+        var volume = pickText(item.volume || item.volumeText || item.turnover, lang) || (lang === 'en' ? '📊 Volume: --' : '📊 成交量：--');
+        var favoriteClass = item.favorite || item.isFavorite ? 'fav-btn active' : 'fav-btn';
+        var favorite = item.favorite || item.isFavorite ? '♥' : '♡';
+        var linkText = lang === 'en' ? 'View Source →' : '查看原文 →';
+        var sparkline = normalizeSparkline(item.sparkline);
+        var stroke = deltaClass === 'delta-down' ? '#c62828' : '#2e7d32';
+
+        return (
+          '<article class="td-card">' +
+            '<div class="event-cover image-cover" style="' + getCoverStyle(item, index) + '">' +
+              '<span class="cover-pill">' + escapeHtml(coverTitle) + '</span>' +
+            '</div>' +
+            '<div class="card-body">' +
+              '<h3 class="card-title">' + escapeHtml(question) + '</h3>' +
+              '<div class="meta-row"><span>' + escapeHtml(category) + '</span><span>' + escapeHtml(deadline) + '</span></div>' +
+              '<div class="chart-row">' +
+                '<div class="mini-chart"><svg viewBox="0 0 120 40" width="100%" height="100%"><polyline points="' + sparkline + '" fill="none" stroke="' + stroke + '" stroke-width="2.5" /></svg></div>' +
+                '<div class="' + deltaClass + '">' + escapeHtml(deltaText) + '</div>' +
+              '</div>' +
+              '<div class="card-footer">' +
+                '<span>' + escapeHtml(volume) + '</span>' +
+                '<span class="link-btn">' + escapeHtml(linkText) + '</span>' +
+                '<button class="' + favoriteClass + '">' + favorite + '</button>' +
+              '</div>' +
+            '</div>' +
+          '</article>'
+        );
+      }
+
+      function render() {
+        var lang = getLang();
+        breakingList.innerHTML = state.markets.map(function (item, index) {
+          return buildCard(item, index, lang);
+        }).join('');
+      }
+
+      async function loadMarkets() {
+        var injected = normalizeMarkets(window.__POLYTREND_BREAKING_RESPONSE);
+        if (injected.length) {
+          state.markets = injected;
+          render();
+          return;
+        }
+
+        var endpoint = window.__POLYTREND_BREAKING_ENDPOINT;
+        if (!endpoint) {
+          state.markets = mockData.markets;
+          render();
+          return;
+        }
+
+        try {
+          var resp = await fetch(endpoint, { method: 'GET', cache: 'no-store' });
+          if (!resp.ok) throw new Error('fetch breaking failed');
+          var json = await resp.json();
+          var markets = normalizeMarkets(json);
+          state.markets = markets.length ? markets : mockData.markets;
+        } catch (err) {
+          state.markets = mockData.markets;
+        }
+        render();
+      }
+
+      document.addEventListener('polytrend:languagechange', render);
+      window.addEventListener('DOMContentLoaded', loadMarkets);
+    })();
+  </script>
   <script src="./common.js"></script>
 </body>
 </html>
