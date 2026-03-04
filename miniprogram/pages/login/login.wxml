@@ -1,7 +1,7 @@
 ﻿<view class="login-page">
   <view class="login-header">
     <t-avatar size="80rpx">PA</t-avatar>
-    <view class="login-title">PolyAgent</view>
+    <view class="login-title">PolyTrend</view>
     <view class="login-subtitle">PolyMarket 资讯速递小程序</view>
     <t-tag theme="primary" variant="light">v1.0 原型</t-tag>
   </view>

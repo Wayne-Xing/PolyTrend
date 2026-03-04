@@ -29,7 +29,7 @@
       <t-cell title="语言切换" bordered="{{true}}">
         <t-switch slot="note" value="{{langChecked}}" bind:change="onLangSwitch" />
       </t-cell>
-      <t-cell title="关于我们" note="PolyAgent v1.0" arrow="{{true}}" />
+      <t-cell title="关于我们" note="PolyTrend v1.0" arrow="{{true}}" />
       <t-cell title="版本号" note="1.0.0" />
       <t-cell title="退出登录" note="执行" arrow="{{true}}" bind:tap="onLogout" />
     </view>
