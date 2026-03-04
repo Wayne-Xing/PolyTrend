@@ -1,0 +1,44 @@
+<view class="breaking-card card-shell" bind:tap="onCardTap">
+  <view class="breaking-card__cover" style="{{item.coverStyle}}">
+    <view class="breaking-card__cover-mask"></view>
+    <view
+      class="breaking-card__fav-top {{item.favorite ? 'breaking-card__fav-top--active' : ''}}"
+      catch:tap="onFavoriteTap"
+    >
+      {{item.favorite ? '♥' : '♡'}}
+    </view>
+    <view class="breaking-card__cover-title">{{item.coverTitle}}</view>
+  </view>
+
+  <view class="breaking-card__body">
+    <view class="breaking-card__question">{{item.question}}</view>
+    <view class="breaking-card__meta">
+      <text>{{item.category}}</text>
+      <text>{{item.deadline}}</text>
+    </view>
+
+    <view class="breaking-card__chart-row">
+      <view class="breaking-card__chart">
+        <view
+          wx:for="{{item.sparkline.segments}}"
+          wx:for-item="segment"
+          wx:key="index"
+          class="breaking-card__segment breaking-card__segment--{{segment.tone}}"
+          style="{{segment.style}}"
+        ></view>
+        <view
+          wx:for="{{item.sparkline.dots}}"
+          wx:for-item="dot"
+          wx:key="index"
+          class="breaking-card__dot breaking-card__dot--{{dot.tone}}"
+          style="{{dot.style}}"
+        ></view>
+      </view>
+      <view class="breaking-card__delta breaking-card__delta--{{item.deltaClass}}">{{item.deltaText}}</view>
+    </view>
+
+    <view class="breaking-card__footer">
+      <text class="breaking-card__volume">{{item.volume}}</text>
+    </view>
+  </view>
+</view>

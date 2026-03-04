@@ -1,0 +1,59 @@
+@import "miniprogram_npm/tdesign-miniprogram/common/style/index.wxss";
+
+page {
+  height: 100%;
+  background: #f5f7fa;
+  color: #1f2937;
+  font-family: "PingFang SC", "Helvetica Neue", sans-serif;
+}
+
+.page-shell {
+  height: 100vh;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: linear-gradient(180deg, #eef5ff 0%, #f5f7fa 28%, #f5f7fa 100%);
+}
+
+.page-scroll {
+  flex: 1;
+  min-height: 0;
+  padding: 24rpx;
+  box-sizing: border-box;
+}
+
+.page-scroll--with-tab {
+  padding-bottom: calc(190rpx + env(safe-area-inset-bottom));
+}
+
+.section-title {
+  margin: 4rpx 4rpx 18rpx;
+  color: #36516d;
+  font-size: 26rpx;
+  font-weight: 600;
+}
+
+.card-shell {
+  border-radius: 24rpx;
+  border: 1px solid #dce4ee;
+  background: #ffffff;
+  box-shadow: 0 12rpx 28rpx rgba(21, 101, 192, 0.08);
+  overflow: hidden;
+}
+
+.inline-muted {
+  color: #6b8097;
+  font-size: 22rpx;
+}
+
+.pill-btn {
+  border-radius: 999rpx;
+}
+
+.empty-wrap {
+  margin-top: 40rpx;
+  border-radius: 24rpx;
+  border: 1px solid #dce4ee;
+  background: #ffffff;
+}

@@ -1,0 +1,24 @@
+<view class="page-shell">
+  <app-header
+    lang="{{lang}}"
+    title=""
+    showBack="{{true}}"
+    backOnly="{{true}}"
+    backUrl="/pages/trending/index"
+    bind:togglelang="onToggleLang"
+  ></app-header>
+
+  <scroll-view class="page-scroll" scroll-y>
+    <view class="card-shell detail-head">
+      <view class="detail-title">{{eventTitle}}</view>
+      <view class="detail-source">{{eventSource}}</view>
+    </view>
+
+    <view class="card-shell detail-webview">
+      <view class="detail-placeholder">
+        <t-empty description="{{i18n.pages.detail.placeholderDesc}}"></t-empty>
+        <view class="detail-placeholder-title">{{i18n.pages.detail.placeholderTitle}}</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

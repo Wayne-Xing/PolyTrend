@@ -1,0 +1,10 @@
+.bottom-tabs {
+  position: relative;
+  z-index: 30;
+}
+
+.tab-emoji {
+  font-size: 34rpx;
+  line-height: 1;
+}
+

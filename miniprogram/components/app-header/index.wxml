@@ -1,0 +1,26 @@
+<view class="app-header" style="padding-top: {{headerTop}}px;">
+  <view class="app-header__brand-row" style="height: {{menuHeight}}px;">
+    <view class="app-header__brand-wrap">
+      <view class="app-header__brand-logo">PT</view>
+      <view class="app-header__brand-title">{{brandTitle}}</view>
+      <view class="app-header__brand-tag">
+        <view class="app-header__brand-tag-top">{{brandTagTop}}</view>
+        <view class="app-header__brand-tag-bottom">{{brandTagBottom}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="app-header__row">
+    <view wx:if="{{backOnly}}" class="app-header__left app-header__left--back-only">
+      <view wx:if="{{showBack}}" class="app-header__back-text" bind:tap="onBackTap">{{backLabel}}</view>
+    </view>
+
+    <view wx:else class="app-header__left">
+      <view class="app-header__section-logo">PT</view>
+      <view wx:if="{{showBack}}" class="app-header__back-icon" bind:tap="onBackTap">←</view>
+      <view class="app-header__section">{{title}}</view>
+    </view>
+
+    <view class="app-header__lang-text" bind:tap="onToggleLang">{{langSwitchText}}</view>
+  </view>
+</view>

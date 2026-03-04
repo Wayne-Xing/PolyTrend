@@ -1,0 +1,5 @@
+.whale-list {
+  display: grid;
+  gap: 18rpx;
+}
+

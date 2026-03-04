@@ -1,0 +1,198 @@
+.market-card {
+  border: 1px solid #dce4ee;
+  background: #ffffff;
+  box-shadow: 0 12rpx 28rpx rgba(21, 101, 192, 0.08);
+  border-radius: 24rpx;
+  overflow: hidden;
+}
+
+.market-card__cover {
+  position: relative;
+  height: 184rpx;
+  background-size: cover;
+  background-position: center;
+}
+
+.market-card__cover-mask {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(8, 17, 33, 0.04) 0%, rgba(8, 17, 33, 0.5) 100%);
+}
+
+.market-card__cover-content {
+  position: absolute;
+  left: 12rpx;
+  right: 72rpx;
+  bottom: 12rpx;
+  z-index: 1;
+}
+
+.market-card__cover-title {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  min-height: 38rpx;
+  padding: 0 12rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.94);
+  color: #203047;
+  font-size: 20rpx;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.market-card__fav-top {
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+  z-index: 2;
+  width: 38rpx;
+  height: 38rpx;
+  border-radius: 999rpx;
+  border: 1px solid rgba(255, 255, 255, 0.56);
+  background: rgba(8, 17, 33, 0.36);
+  color: #f8fbff;
+  font-size: 22rpx;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.market-card__fav-top--active {
+  color: #ff5d7f;
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.92);
+}
+
+.market-card__body {
+  padding: 14rpx;
+}
+
+.market-card__head {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+}
+
+.market-card__badge {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 999rpx;
+  background: #edf3fb;
+  border: 1px solid #d6e2f2;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  flex-shrink: 0;
+}
+
+.market-card__head-meta {
+  min-width: 0;
+  flex: 1;
+}
+
+.market-card__topic {
+  color: #2b3e55;
+  font-size: 20rpx;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.market-card__time {
+  margin-top: 4rpx;
+  color: #7a8da5;
+  font-size: 18rpx;
+}
+
+.market-card__prob {
+  min-width: 74rpx;
+  height: 46rpx;
+  border-radius: 999rpx;
+  border: 1px solid #d8e0ea;
+  background: #f8fafc;
+  color: #53687e;
+  font-size: 22rpx;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.market-card__prob--up {
+  color: #1f8a4c;
+  background: #ecf9f1;
+  border-color: #cdeedb;
+}
+
+.market-card__prob--down {
+  color: #c43a3a;
+  background: #fff1f1;
+  border-color: #f4cccc;
+}
+
+.market-card__question {
+  margin-top: 12rpx;
+  min-height: 72rpx;
+  color: #1f2f44;
+  font-size: 24rpx;
+  font-weight: 700;
+  line-height: 1.36;
+}
+
+.market-card__outcomes {
+  margin-top: 10rpx;
+  border: 1px solid #e7edf4;
+  border-radius: 14rpx;
+  overflow: hidden;
+}
+
+.market-card__outcome-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8rpx;
+  padding: 10rpx 12rpx;
+  background: #fbfdff;
+  color: #40566e;
+  font-size: 20rpx;
+}
+
+.market-card__outcome-row + .market-card__outcome-row {
+  border-top: 1px solid #edf2f7;
+}
+
+.market-card__outcome-value {
+  color: #1f2937;
+  font-weight: 800;
+}
+
+.market-card__footer {
+  margin-top: 10rpx;
+  padding-top: 10rpx;
+  border-top: 1px solid #eef2f6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8rpx;
+}
+
+.market-card__volume {
+  color: #667b92;
+  font-size: 20rpx;
+  font-weight: 600;
+}
+
+.market-card__footer-meta {
+  color: #8ca0b7;
+  font-size: 18rpx;
+  max-width: 160rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

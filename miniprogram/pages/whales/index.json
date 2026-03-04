@@ -1,0 +1,10 @@
+{
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "app-header": "/components/app-header/index",
+    "bottom-tabs": "/components/bottom-tabs/index",
+    "whale-card": "/components/whale-card/index",
+    "t-empty": "/miniprogram_npm/tdesign-miniprogram/empty/empty"
+  }
+}
+

@@ -1,0 +1,25 @@
+<view class="page-shell">
+  <app-header lang="{{lang}}" title="{{pageTitle}}" bind:togglelang="onToggleLang"></app-header>
+
+  <scroll-view class="page-scroll page-scroll--with-tab" scroll-y>
+    <view class="card-shell profile-user">
+      <t-avatar class="profile-avatar" size="92rpx">M</t-avatar>
+      <view class="profile-meta">
+        <view class="profile-name">Morph User</view>
+        <view class="profile-sub">{{i18n.pages.profile.loggedIn}}</view>
+      </view>
+    </view>
+
+    <view class="card-shell profile-link">
+      <t-cell title="{{i18n.pages.profile.myFavorites}}" note="{{i18n.pages.profile.manage}}" arrow bind:tap="onGoFavorites"></t-cell>
+    </view>
+
+    <view class="card-shell profile-settings">
+      <t-cell title="{{i18n.pages.profile.about}}" note="PolyTrend v1.0" arrow></t-cell>
+      <t-cell title="{{i18n.pages.profile.version}}" note="1.0.0"></t-cell>
+      <t-cell title="{{i18n.pages.profile.logout}}" note=">"></t-cell>
+    </view>
+  </scroll-view>
+
+  <bottom-tabs lang="{{lang}}" value="profile"></bottom-tabs>
+</view>

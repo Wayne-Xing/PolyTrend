@@ -1,0 +1,23 @@
+{
+  "pages": [
+    "pages/login/index",
+    "pages/trending/index",
+    "pages/breaking/index",
+    "pages/latest/index",
+    "pages/whales/index",
+    "pages/profile/index",
+    "pages/favorites/index",
+    "pages/event-detail/index"
+  ],
+  "window": {
+    "navigationStyle": "custom",
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#f5f7fa",
+    "backgroundColorTop": "#eaf2ff",
+    "backgroundColorBottom": "#f5f7fa"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}
+

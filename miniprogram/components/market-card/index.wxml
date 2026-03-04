@@ -1,0 +1,39 @@
+<view class="market-card card-shell" bind:tap="onCardTap">
+  <view class="market-card__cover" style="{{item.coverStyle}}">
+    <view class="market-card__cover-mask"></view>
+    <view
+      class="market-card__fav-top {{item.favorite ? 'market-card__fav-top--active' : ''}}"
+      catch:tap="onFavoriteTap"
+    >
+      {{item.favorite ? '♥' : '♡'}}
+    </view>
+    <view class="market-card__cover-content">
+      <view class="market-card__cover-title">{{item.coverTitle}}</view>
+    </view>
+  </view>
+
+  <view class="market-card__body">
+    <view class="market-card__head">
+      <view class="market-card__badge">{{item.badge}}</view>
+      <view class="market-card__head-meta">
+        <view class="market-card__topic">{{item.topic}}</view>
+        <view class="market-card__time">{{item.deadline}}</view>
+      </view>
+      <view class="market-card__prob market-card__prob--{{item.trendClass}}">{{item.topPercent}}</view>
+    </view>
+
+    <view class="market-card__question">{{item.question}}</view>
+
+    <view class="market-card__outcomes">
+      <view class="market-card__outcome-row" wx:for="{{item.outcomes}}" wx:for-item="outcome" wx:key="index">
+        <text>{{outcome.label}}</text>
+        <text class="market-card__outcome-value">{{outcome.percent}}</text>
+      </view>
+    </view>
+
+    <view class="market-card__footer">
+      <text class="market-card__volume">{{item.volume}}</text>
+      <text class="market-card__footer-meta">{{item.topic}}</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,51 @@
+<view class="login-page">
+  <view class="login-lang-row">
+    <t-button
+      theme="default"
+      variant="outline"
+      size="small"
+      shape="round"
+      class="login-lang-btn"
+      bind:tap="onToggleLang"
+    >
+      {{i18n.langSwitch}}
+    </t-button>
+  </view>
+
+  <view class="login-logo">PT</view>
+  <view class="login-title">{{i18n.pages.login.title}}</view>
+  <view class="login-subtitle">{{i18n.pages.login.subtitle}}</view>
+
+  <view class="card-shell login-card">
+    <view class="login-card-title">{{i18n.pages.login.sectionTitle}}</view>
+
+    <view class="step-item">
+      <view class="step-dot">1</view>
+      <view class="step-text">{{i18n.pages.login.step1}}</view>
+    </view>
+    <view class="step-item">
+      <view class="step-dot">2</view>
+      <view class="step-text">{{i18n.pages.login.step2}}</view>
+    </view>
+    <view class="step-item">
+      <view class="step-dot">3</view>
+      <view class="step-text">{{i18n.pages.login.step3}}</view>
+    </view>
+    <view class="step-item">
+      <view class="step-dot">4</view>
+      <view class="step-text">{{i18n.pages.login.step4}}</view>
+    </view>
+  </view>
+
+  <view class="login-actions">
+    <t-button theme="primary" block shape="round" size="large" bind:tap="onLogin">
+      {{i18n.pages.login.loginBtn}}
+    </t-button>
+    <t-button theme="default" variant="outline" block shape="round" size="large" bind:tap="onBrowse">
+      {{i18n.pages.login.browseBtn}}
+    </t-button>
+  </view>
+
+  <view class="login-agreement">{{i18n.pages.login.agreement}}</view>
+</view>
+

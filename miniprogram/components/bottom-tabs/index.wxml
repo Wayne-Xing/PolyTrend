@@ -1,0 +1,31 @@
+<view class="bottom-tabs">
+  <t-tab-bar
+    value="{{value}}"
+    fixed="{{true}}"
+    safe-area-inset-bottom="{{true}}"
+    bordered="{{true}}"
+    bind:change="onTabChange"
+  >
+    <t-tab-bar-item value="trending">
+      <view slot="icon" class="tab-emoji">🔥</view>
+      {{labels.trending}}
+    </t-tab-bar-item>
+    <t-tab-bar-item value="breaking">
+      <view slot="icon" class="tab-emoji">⚡</view>
+      {{labels.breaking}}
+    </t-tab-bar-item>
+    <t-tab-bar-item value="latest">
+      <view slot="icon" class="tab-emoji">🆕</view>
+      {{labels.latest}}
+    </t-tab-bar-item>
+    <t-tab-bar-item value="whales">
+      <view slot="icon" class="tab-emoji">🐳</view>
+      {{labels.whales}}
+    </t-tab-bar-item>
+    <t-tab-bar-item value="profile">
+      <view slot="icon" class="tab-emoji">👤</view>
+      {{labels.profile}}
+    </t-tab-bar-item>
+  </t-tab-bar>
+</view>
+

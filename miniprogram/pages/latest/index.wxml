@@ -1,0 +1,19 @@
+<view class="page-shell">
+  <app-header lang="{{lang}}" title="{{pageTitle}}" bind:togglelang="onToggleLang"></app-header>
+
+  <scroll-view class="page-scroll page-scroll--with-tab" scroll-y>
+    <view class="section-title">{{sectionTitle}}</view>
+
+    <view wx:if="{{markets.length}}" class="market-grid">
+      <view class="market-grid__item" wx:for="{{markets}}" wx:key="id">
+        <market-card item="{{item}}" bind:cardtap="onCardTap" bind:favtap="onFavoriteTap"></market-card>
+      </view>
+    </view>
+
+    <view wx:else class="empty-wrap">
+      <t-empty description="{{loading ? i18n.common.loading : i18n.common.noData}}"></t-empty>
+    </view>
+  </scroll-view>
+
+  <bottom-tabs lang="{{lang}}" value="latest"></bottom-tabs>
+</view>

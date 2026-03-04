@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "app-header": "/components/app-header/index",
+    "t-search": "/miniprogram_npm/tdesign-miniprogram/search/search",
+    "t-empty": "/miniprogram_npm/tdesign-miniprogram/empty/empty",
+    "t-swipe-cell": "/miniprogram_npm/tdesign-miniprogram/swipe-cell/swipe-cell"
+  }
+}

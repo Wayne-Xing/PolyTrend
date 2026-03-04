@@ -1,0 +1,11 @@
+.market-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 16rpx 0;
+}
+
+.market-grid__item {
+  width: calc(50% - 8rpx);
+}
+

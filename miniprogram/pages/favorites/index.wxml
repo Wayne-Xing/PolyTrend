@@ -1,0 +1,68 @@
+<view class="page-shell">
+  <app-header
+    lang="{{lang}}"
+    title=""
+    showBack="{{true}}"
+    backOnly="{{true}}"
+    backText="{{backText}}"
+    backUrl="/pages/profile/index"
+    bind:togglelang="onToggleLang"
+  ></app-header>
+
+  <scroll-view class="page-scroll" scroll-y>
+    <view class="section-title">{{sectionTitle}}</view>
+
+    <view class="card-shell fav-toolbar">
+      <view class="fav-search">
+        <t-search value="{{query}}" action="" placeholder="{{searchPlaceholder}}" bind:change="onSearchChange"></t-search>
+      </view>
+    </view>
+
+    <view wx:if="{{items.length}}" class="fav-list">
+      <t-swipe-cell
+        wx:for="{{items}}"
+        wx:key="id"
+        right="{{item.swipeRight}}"
+        data-id="{{item.id}}"
+        bind:click="onSwipeDelete"
+      >
+        <view class="card-shell fav-item {{item.dragging ? 'fav-item--dragging' : ''}}">
+          <view class="fav-item__thumb" style="{{item.thumbStyle}}" data-id="{{item.id}}" bind:tap="onItemTap"></view>
+
+          <view class="fav-item__body" data-id="{{item.id}}" bind:tap="onItemTap">
+            <view class="fav-item__title">{{item.title}}</view>
+            <view class="fav-item__sub">{{item.subtitle}}</view>
+            <view class="fav-item__meta">
+              <text>{{item.categoryText}}</text>
+              <text>{{item.meta}}</text>
+            </view>
+          </view>
+
+          <view class="fav-item__actions">
+            <view
+              class="fav-item__favorite {{item.favorite ? 'fav-item__favorite--active' : ''}}"
+              data-id="{{item.id}}"
+              catch:tap="onFavoriteTap"
+            >
+              {{item.favorite ? '♥' : '♡'}}
+            </view>
+            <view
+              class="fav-item__drag"
+              data-id="{{item.id}}"
+              catch:touchstart="onDragStart"
+              catch:touchmove="onDragMove"
+              catch:touchend="onDragEnd"
+              catch:touchcancel="onDragEnd"
+            >
+              ⋮
+            </view>
+          </view>
+        </view>
+      </t-swipe-cell>
+    </view>
+
+    <view wx:else class="empty-wrap">
+      <t-empty description="{{i18n.pages.favorites.noMatch}}"></t-empty>
+    </view>
+  </scroll-view>
+</view>

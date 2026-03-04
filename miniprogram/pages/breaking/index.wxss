@@ -1,0 +1,5 @@
+.breaking-list {
+  display: grid;
+  gap: 18rpx;
+}
+

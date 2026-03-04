@@ -1,0 +1,31 @@
+<view class="whale-card card-shell" bind:tap="onCardTap">
+  <view class="whale-card__cover" style="{{item.coverStyle}}">
+    <view class="whale-card__cover-mask"></view>
+    <view
+      class="whale-card__fav-top {{item.favorite ? 'whale-card__fav-top--active' : ''}}"
+      catch:tap="onFavoriteTap"
+    >
+      {{item.favorite ? '♥' : '♡'}}
+    </view>
+    <view class="whale-card__cover-title">{{item.coverTitle}}</view>
+  </view>
+
+  <view class="whale-card__body">
+    <view class="whale-card__top">
+      <view>
+        <view class="whale-card__amount">{{item.amount}}</view>
+        <view class="whale-card__time">{{item.tradeTime}}</view>
+      </view>
+      <view class="whale-card__side whale-card__side--{{item.sideClass}}">{{item.sideText}}</view>
+    </view>
+
+    <view class="whale-card__market">{{item.marketText}}</view>
+    <view class="whale-card__line">{{item.positionText}}</view>
+    <view class="whale-card__line">{{item.hashText}}</view>
+
+    <view class="whale-card__footer">
+      <view class="whale-card__address">{{item.addressText}}</view>
+      <view class="whale-card__link">{{item.linkText}}</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "app-header": "/components/app-header/index",
+    "bottom-tabs": "/components/bottom-tabs/index",
+    "t-avatar": "/miniprogram_npm/tdesign-miniprogram/avatar/avatar",
+    "t-cell-group": "/miniprogram_npm/tdesign-miniprogram/cell-group/cell-group",
+    "t-cell": "/miniprogram_npm/tdesign-miniprogram/cell/cell"
+  }
+}

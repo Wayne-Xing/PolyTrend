@@ -1,0 +1,40 @@
+.detail-head {
+  padding: 20rpx;
+}
+
+.detail-title {
+  color: #1f2937;
+  font-size: 28rpx;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.detail-source {
+  margin-top: 8rpx;
+  color: #64748b;
+  font-size: 22rpx;
+}
+
+.detail-webview {
+  margin-top: 16rpx;
+  padding: 18rpx;
+}
+
+.detail-placeholder {
+  min-height: 980rpx;
+  border-radius: 20rpx;
+  border: 1px solid #dbe4ef;
+  background: #f8fbff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+}
+
+.detail-placeholder-title {
+  color: #334155;
+  font-size: 28rpx;
+  font-weight: 600;
+}
+
