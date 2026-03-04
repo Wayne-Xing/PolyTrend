@@ -3,10 +3,29 @@
 
   <scroll-view class="page-scroll page-scroll--with-tab" scroll-y>
     <view class="card-shell profile-user">
-      <t-avatar class="profile-avatar" size="92rpx">M</t-avatar>
+      <view class="profile-avatar-wrap">
+        <button
+          wx:if="{{isLoggedIn}}"
+          class="profile-avatar-btn"
+          open-type="chooseAvatar"
+          bindchooseavatar="onEditAvatar"
+          loading="{{updatingAvatar}}"
+        >
+          <t-avatar class="profile-avatar" size="92rpx" image="{{avatarUrl}}">{{avatarText}}</t-avatar>
+        </button>
+        <view wx:else class="profile-avatar-static">
+          <t-avatar class="profile-avatar" size="92rpx" image="{{avatarUrl}}">{{avatarText}}</t-avatar>
+        </view>
+      </view>
       <view class="profile-meta">
-        <view class="profile-name">Morph User</view>
-        <view class="profile-sub">{{i18n.pages.profile.loggedIn}}</view>
+        <view class="profile-name">{{displayName}}</view>
+        <view
+          wx:if="{{isLoggedIn}}"
+          class="profile-edit-nickname-link"
+          bindtap="onEditNickname"
+        >
+          {{i18n.pages.profile.edit}}
+        </view>
       </view>
     </view>
 
@@ -15,9 +34,20 @@
     </view>
 
     <view class="card-shell profile-settings">
+      <t-cell
+        wx:if="{{!isLoggedIn}}"
+        title="{{i18n.pages.profile.loginNow}}"
+        arrow
+        bind:tap="onGoLogin"
+      ></t-cell>
       <t-cell title="{{i18n.pages.profile.about}}" note="PolyTrend v1.0" arrow></t-cell>
       <t-cell title="{{i18n.pages.profile.version}}" note="1.0.0"></t-cell>
-      <t-cell title="{{i18n.pages.profile.logout}}" note=">"></t-cell>
+      <t-cell
+        wx:if="{{isLoggedIn}}"
+        title="{{i18n.pages.profile.logout}}"
+        arrow
+        bind:tap="onLogout"
+      ></t-cell>
     </view>
   </scroll-view>
 

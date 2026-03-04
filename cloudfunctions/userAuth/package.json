@@ -1,0 +1,9 @@
+{
+  "name": "user-auth",
+  "version": "1.0.0",
+  "description": "PolyTrend user auth cloud function",
+  "main": "index.js",
+  "dependencies": {
+    "wx-server-sdk": "latest"
+  }
+}

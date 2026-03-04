@@ -38,7 +38,15 @@
   </view>
 
   <view class="login-actions">
-    <t-button theme="primary" block shape="round" size="large" bind:tap="onLogin">
+    <t-button
+      theme="primary"
+      block
+      shape="round"
+      size="large"
+      loading="{{loginLoading}}"
+      disabled="{{loginLoading}}"
+      bind:tap="onLogin"
+    >
       {{i18n.pages.login.loginBtn}}
     </t-button>
     <t-button theme="default" variant="outline" block shape="round" size="large" bind:tap="onBrowse">
@@ -48,4 +56,3 @@
 
   <view class="login-agreement">{{i18n.pages.login.agreement}}</view>
 </view>
-
